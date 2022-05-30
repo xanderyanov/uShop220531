@@ -1,4 +1,8 @@
-﻿using uShop.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using uShop.Models;
 
 namespace uShop.Models.ViewModels
 {
@@ -9,3 +13,4 @@ namespace uShop.Models.ViewModels
         public string CurrentCategory { get; set; }
     }
 }
+

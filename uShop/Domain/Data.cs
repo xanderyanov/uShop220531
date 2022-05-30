@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using uShop.Domain;
 
 namespace uShop
 {

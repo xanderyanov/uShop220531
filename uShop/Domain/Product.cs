@@ -1,7 +1,11 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace uShop.Domain
+namespace uShop
 {
     [BsonIgnoreExtraElements]  //если какого-то поля нет - не выведет ошибку а проигнорирует
     public class Product
@@ -17,7 +21,7 @@ namespace uShop.Domain
         public string Price { get; set; }
         public string BrandName { get; set; }
         public string ImgFileName { get; set; }
-        public string New { get; set; }
+        public bool New { get; set; }
         public string HM_Balance { get; set; }
         public string GL_Balance { get; set; }
         public string LZ_Balance { get; set; }

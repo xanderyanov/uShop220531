@@ -1,10 +1,8 @@
-﻿@model IEnumerable<Product>
-
-
+﻿@model IEnumerable<Product>
 @{
     ViewData["Title"] = "Home Page";
-    var SaleLeader = Model.Where(x => x.FlagSaleLeader);
-    var NewTovar = Model.Where(x => x.FlagNew);
+    var HM_Balance = Model.Where(x => (x.HM_Balance == "1"));
+    //var NewTovar = Model.Where(x => x.New);
 
 }
 
@@ -14,19 +12,18 @@
     <h2>Хиты продаж</h2>
     <div class="row">
         
-        @foreach (var p in SaleLeader) {
+        @foreach (var p in HM_Balance) {
             <partial name="Partials/ProductSummary" model="p" />
         }
     </div>
     
     <h2>Новые поступления</h2>
-    <div class="row">
+    @*<div class="row">
         
         @foreach (var p in NewTovar) {
             <partial name="Partials/ProductSummary" model="p" />
         }
-    </div>
+    </div>*@
     <img src="https://mirchasov64.ru/assets/img/logo1.png" alt="Alternate Text" />
-
-   
+   
 </div>
