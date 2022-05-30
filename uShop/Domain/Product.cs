@@ -8,7 +8,7 @@ namespace uShop.Domain
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public ObjectId Id { get; set; }
         public string Code1C { get; set; }
         public string Name { get; set; }
         public string Path { get; set; }

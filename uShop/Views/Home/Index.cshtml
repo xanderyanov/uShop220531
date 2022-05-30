@@ -1,8 +1,32 @@
-﻿@{
+﻿@model IEnumerable<Product>
+
+
+@{
     ViewData["Title"] = "Home Page";
+    var SaleLeader = Model.Where(x => x.FlagSaleLeader);
+    var NewTovar = Model.Where(x => x.FlagNew);
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center col-12">
+    <h1 class="display-4">Главная страница</h1>
+    
+    <h2>Хиты продаж</h2>
+    <div class="row">
+        
+        @foreach (var p in SaleLeader) {
+            <partial name="Partials/ProductSummary" model="p" />
+        }
+    </div>
+    
+    <h2>Новые поступления</h2>
+    <div class="row">
+        
+        @foreach (var p in NewTovar) {
+            <partial name="Partials/ProductSummary" model="p" />
+        }
+    </div>
+    <img src="https://mirchasov64.ru/assets/img/logo1.png" alt="Alternate Text" />
+
+   
 </div>
