@@ -1,3 +1,17 @@
+using MmxCMS;
+using MongoDB.Driver;
+using uShop.Domain;
+
+CSVtoDB CSVtoDBexport = new CSVtoDB();
+
+CSVtoDBexport.ExportCSVAsync();
+
+
+
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,3 +35,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+

@@ -1,0 +1,147 @@
+mixin topLine 
+  .wrapper.topLine__wrapper 
+    .container-fluid.container-xl 
+      .topLine.row.py-2
+        .col-4
+          .topLine__location 
+            i.bi.bi-geo-alt-fill
+            span.locationName.openFlyBoxBtn(data-id="flybox1") Укажите город
+        .col-8.d-flex.justify-content-end
+          .topLine__phone 
+            i.bi.bi-phone-vibrate
+            a(href="tel:+79179888833") 8-800-700-21-27
+          .topLine__phone.topLine__phone_location 
+            i.bi.bi-phone-vibrate
+            a(href="tel:+79179888833") 8-917-988-88-33 
+
+
+
+mixin header 
+  .wrapper 
+    .container-fluid.container-xl 
+      header.header.row.py-2  
+        .col-12.col-md-3 
+          .logo1 
+            a(href="/")
+              img(src="assets/img/logo1.png", alt="") 
+        .col-12.col-md-6
+          .header__slogan 
+            span Сеть магазинов в Саратове, Энгельсе и Пензе
+            span Подарите близким свое время 
+        .col-12.col-md-3 
+          .header__cont
+            .header__btn.xBtn Заказать звонок
+
+mixin topMenu 
+  .wrapper.topMenu__wrapper 
+    .container-fluid.container-xl 
+      nav.topMenu__area.row 
+        ul.topMenu.col
+          li.active
+            a(href="#") Главная
+          li
+            a(href="#") Каталог
+          li
+            a(href="#") Доставка
+          li
+            a(href="#") Акции
+          li
+            a(href="#") Магазины
+
+mixin locationPopUp 
+  .overlay(data-overlay="flybox1") 
+    .overlay__inner
+      .flyBox
+        .flyBox__close 
+          i.bi.bi-x-lg
+        .flyBox__inner.xScroll 
+          .location__town(data-town="engels") Энгельс
+          .location__town(data-town="saratov") Саратов
+          .location__town(data-town="penza") Пенза
+
+          
+mixin leftMenu 
+  ul.leftMenu
+    li.first
+      a(href='33-element-10940/') 33 ELEMENT
+    li
+      a(href='adriatica-11115/') Adriatica
+    li
+      a(href='anne-klein-12000/') Anne Klein
+    li
+      a(href='armani-exchange/') Armani Exchange
+    li
+      a(href='casio-(yaponiya)-13853/') Casio (Япония)
+    li
+      a(href='cover-(shvejczariya)-11910/') COVER (Швейцария)
+    li
+      a(href='daniel-klein-10171/') Daniel Klein
+    li
+      a(href='danish-design-15665/') Danish Design
+    li
+      a(href='diesel-9758/') Diesel
+    li.active
+      a(href='dkny-9871/') DKNY
+    li
+      a(href='elixa/') Elixa
+    li
+      a(href='essence-15510/') Essence
+    li
+      a(href='fossil-15275/') Fossil
+    li
+      a(href='guardo-10563/') GUARDO
+    li
+      a(href='guess-9984/') GUESS
+    li
+      a(href='jacques-lemans-11708/') Jacques Lemans
+    li
+      a(href='lee-cooper-10960/') Lee Cooper
+    li
+      a(href='morgan-11857/') MORGAN
+    li
+      a(href='orient-(yaponiya)-13301/') Orient (Япония)
+    li
+      a(href='pierre-ricaud-11029/') Pierre Ricaud
+    li
+      a(href='qandq-(yaponiya)-12165/') Q&Q (Япония)
+    li
+      a(href='romanson-11300/') Romanson
+    li
+      a(href='skagen-14982/') Skagen
+    li
+      a(href='slazenger/') Slazenger
+    li
+      a(href='smart-watch-10857/') Smart watch
+    li
+      a(href='storm-15231/') STORM
+    li
+      a(href='swiss-military-10888/') Swiss Military
+    li
+      a(href='timberland-11259/') Timberland
+    li
+      a(href='timex-10161/') TIMEX
+    li
+      a(href='wainer-(shvejczariya)-10508/') WAINER (Швейцария)
+    li
+      a(href='wenger-11204/') Wenger
+    li
+      a(href='vostok-15080/') Восток
+    li
+      a(href='detskie/') ДЕТСКИЕ
+    li
+      a(href='russkoe-vremya-11287/') Русское время
+    li
+      a(href='slava-10800/') Слава
+    li
+      a(href='sputnik/') Спутник
+    li
+      a(href='sputnik-prestizh-11249/') Спутник престиж
+    li.last
+      a(href='fitnes-brasletyi/') Фитнес-браслеты
+
+
+
+
+
+
+

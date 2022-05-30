@@ -1,0 +1,40 @@
+mixin mainSlider 
+  .wrapper
+    .container-fluid.container-xl 
+      .row.mainSlider__area.py-2.py-lg-3
+        .mainLink.col-3
+          .mainLink__itemOuter 
+            a.mainLink__item(href="#")
+              img(src="assets/img/slider/01.jpg", alt="")
+              span Заголовок
+          .mainLink__itemOuter 
+            a.mainLink__item(href="#")
+              img(src="assets/img/slider/02.jpg", alt="")
+              span Заголовок 2
+        .col-6
+          .mainSlider.swiper
+            .swiper-wrapper
+              .swiper-slide
+                img(src="assets/img/slider/01.jpg", alt="")
+              .swiper-slide
+                img(src="assets/img/slider/02.jpg", alt="")
+              .swiper-slide
+                img(src="assets/img/slider/03.jpg", alt="")
+              .swiper-slide
+                img(src="assets/img/slider/01.jpg", alt="")
+              .swiper-slide
+                img(src="assets/img/slider/02.jpg", alt="")
+              .swiper-slide
+                img(src="assets/img/slider/03.jpg", alt="")
+            .swiper-pagination.mainSlider__pag
+            .swiper-button-next.mainSlider__next
+            .swiper-button-prev.mainSlider__prev
+        .mainLink.col-3
+          .mainLink__itemOuter 
+            a.mainLink__item(href="#")
+              img(src="assets/img/slider/03.jpg", alt="")
+              span Заголовок 3
+          .mainLink__itemOuter 
+            a.mainLink__item(href="#")
+              img(src="assets/img/slider/01.jpg", alt="")
+              span Заголовок 4

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uShop", "uShop\uShop.csproj", "{EAD84502-925E-43EE-8C6C-90665EC02743}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uShopHtml", "uShopHtml\uShopHtml.csproj", "{EECED27D-5330-4111-B1DA-8E8AFFF63B4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EAD84502-925E-43EE-8C6C-90665EC02743}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD84502-925E-43EE-8C6C-90665EC02743}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAD84502-925E-43EE-8C6C-90665EC02743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EECED27D-5330-4111-B1DA-8E8AFFF63B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EECED27D-5330-4111-B1DA-8E8AFFF63B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EECED27D-5330-4111-B1DA-8E8AFFF63B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EECED27D-5330-4111-B1DA-8E8AFFF63B4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
