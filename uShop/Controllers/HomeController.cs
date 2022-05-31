@@ -8,16 +8,15 @@ using System.Linq;
 using uShop.Models.ViewModels;
 
 
-namespace uShop.Controllers
+namespace uShop.Controllers;
+
+public class HomeController : BaseController
 {
-    public class HomeController : BaseController
+
+    public IActionResult Index()
     {
-
-        public IActionResult Index()
-        {
-            return View(Data.Products);
-        }
-
-
+        return View(Data.Products);
     }
+
+
 }

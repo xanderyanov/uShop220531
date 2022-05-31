@@ -1,29 +1,30 @@
 ﻿@model IEnumerable<Product>
 @{
     ViewData["Title"] = "Home Page";
-    var HM_Balance = Model.Where(x => (x.HM_Balance == "1"));
-    //var NewTovar = Model.Where(x => x.New);
+    //var HM_Balance = Model.Where(x => (x.HM_Balance == "1"));
+    var NewTovar = Model.Where(x => x.New);
 
 }
 
 <div class="text-center col-12">
     <h1 class="display-4">Главная страница</h1>
     
-    <h2>Хиты продаж</h2>
+@*    <h2>Хиты продаж</h2>
     <div class="row">
         
-        @foreach (var p in HM_Balance) {
+        @foreach (var p in Model) {
+            <h4>@p.Name</h4>
             <partial name="Partials/ProductSummary" model="p" />
         }
-    </div>
+    </div>*@
     
     <h2>Новые поступления</h2>
-    @*<div class="row">
+    <div class="row">
         
         @foreach (var p in NewTovar) {
             <partial name="Partials/ProductSummary" model="p" />
         }
-    </div>*@
+    </div>
     <img src="https://mirchasov64.ru/assets/img/logo1.png" alt="Alternate Text" />
    
 </div>
