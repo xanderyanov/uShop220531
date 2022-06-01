@@ -41,9 +41,21 @@
 
 .catalog__itemImg {
   margin-bottom: 20px;
+  padding-top: 133%;
+  position: relative;
+}
+
+.catalog__itemImgInner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 .catalog__itemImg img {
-  display: block;
   width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

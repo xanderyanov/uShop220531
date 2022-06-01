@@ -1,30 +1,7 @@
-﻿@model IEnumerable<Product>
-@{
+﻿@model IEnumerable<Product>@{
     ViewData["Title"] = "Home Page";
-    //var HM_Balance = Model.Where(x => (x.HM_Balance == "1"));
-    var NewTovar = Model.Where(x => x.New);
+    var SaleLeader = Model.Where(x => x.FlagSaleLeader);
+    var NewTovar = Model.Where(x => x.FlagNew);
 
-}
-
-<div class="text-center col-12">
-    <h1 class="display-4">Главная страница</h1>
-    
-@*    <h2>Хиты продаж</h2>
-    <div class="row">
-        
-        @foreach (var p in Model) {
-            <h4>@p.Name</h4>
-            <partial name="Partials/ProductSummary" model="p" />
-        }
-    </div>*@
-    
-    <h2>Новые поступления</h2>
-    <div class="row">
-        
-        @foreach (var p in NewTovar) {
-            <partial name="Partials/ProductSummary" model="p" />
-        }
-    </div>
-    <img src="https://mirchasov64.ru/assets/img/logo1.png" alt="Alternate Text" />
-   
-</div>
+}<partial name="Partials/SliderMain" /><div class="wrapper">    <div class="container-fluid container-xl">        <div class="row py-2 catalog__area">            <div class="col-3">                <div class="catalog__side">                    <ul class="leftMenu">                        <li class="first"><a href="33-element-10940/">33 ELEMENT</a></li>                        <li><a href="adriatica-11115/">Adriatica</a></li>                        <li><a href="anne-klein-12000/">Anne Klein</a></li>                        <li><a href="armani-exchange/">Armani Exchange</a></li>                        <li><a href="casio-(yaponiya)-13853/">Casio (Япония)</a></li>                        <li><a href="cover-(shvejczariya)-11910/">COVER (Швейцария)</a></li>                        <li><a href="daniel-klein-10171/">Daniel Klein</a></li>                        <li><a href="danish-design-15665/">Danish Design</a></li>                        <li><a href="diesel-9758/">Diesel</a></li>                        <li class="active"><a href="dkny-9871/">DKNY</a></li>                        <li><a href="elixa/">Elixa</a></li>                        <li><a href="essence-15510/">Essence</a></li>                        <li><a href="fossil-15275/">Fossil</a></li>                        <li><a href="guardo-10563/">GUARDO</a></li>                        <li><a href="guess-9984/">GUESS</a></li>                        <li><a href="jacques-lemans-11708/">Jacques Lemans</a></li>                        <li><a href="lee-cooper-10960/">Lee Cooper</a></li>                        <li><a href="morgan-11857/">MORGAN</a></li>                        <li><a href="orient-(yaponiya)-13301/">Orient (Япония)</a></li>                        <li><a href="pierre-ricaud-11029/">Pierre Ricaud</a></li>                        <li><a href="qandq-(yaponiya)-12165/">Q&Q (Япония)</a></li>                        <li><a href="romanson-11300/">Romanson</a></li>                        <li><a href="skagen-14982/">Skagen</a></li>                        <li><a href="slazenger/">Slazenger</a></li>                        <li><a href="smart-watch-10857/">Smart watch</a></li>                        <li><a href="storm-15231/">STORM</a></li>                        <li><a href="swiss-military-10888/">Swiss Military</a></li>                        <li><a href="timberland-11259/">Timberland</a></li>                        <li><a href="timex-10161/">TIMEX</a></li>                        <li><a href="wainer-(shvejczariya)-10508/">WAINER (Швейцария)</a></li>                        <li><a href="wenger-11204/">Wenger</a></li>                        <li><a href="vostok-15080/">Восток</a></li>                        <li><a href="detskie/">ДЕТСКИЕ</a></li>                        <li><a href="russkoe-vremya-11287/">Русское время</a></li>                        <li><a href="slava-10800/">Слава</a></li>                        <li><a href="sputnik/">Спутник</a></li>                        <li><a href="sputnik-prestizh-11249/">Спутник престиж</a></li>                        <li class="last"><a href="fitnes-brasletyi/">Фитнес-браслеты</a></li>                    </ul>                </div>            </div>            <div class="col-9">                <div class="catalog">                    @foreach (var p in SaleLeader)
+                        {                            <partial name="Partials/ProductSummary" model="p" />                        }                </div>            </div>        </div>    </div></div>

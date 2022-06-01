@@ -5,7 +5,7 @@ using uShop.Domain;
 
 CSVtoDB CSVtoDBexport = new CSVtoDB();
 
-//CSVtoDBexport.ExportCSVAsync();
+CSVtoDBexport.ExportCSVAsync();
 
 
 

@@ -2,20 +2,5 @@
 
 @if (string.IsNullOrEmpty(Model.ImgFileName)) { Model.ImgFileName = "logo1.png"; }
 
-<div class="card__outer col-6 col-sm-4 col-md-3 col-lg-2 p-2">
-    <div class="card h-100 d-flex flex-column p-2">
-        <h4>@Model.Name</h4>
-        <img src="https://mirchasov64.ru/uploads/aaaclock/@Model.ImgFileName" alt="Alternate Text" />
-        <p class="mt-auto">@Model.BrandName</p>
-        @Model.Extra
-                        
-@*        @if (Model.dblCaseSize != 0.0) {
-            <p>@Model.dblCaseSize</p>
-        }*@
-
-        <p>@Model.CaseSize</p>
-                        
-        <h5 >@Model.DiscountPrice</h5>
-        <a href="Product/@Model.Id.ToString()">Подробнее...</a>
-    </div>
-</div>
+<div class="catalog__item">    <div class="catalog__itemImg">
+        <div class="catalog__itemImgInner">            <img src="https://mirchasov64.ru/uploads/aaaclock/@Model.ImgFileName" alt="@Model.BrandName" />        </div>    </div>    <div class="catalog__itemTitle">@Model.Name</div>    <div class="catalog__itemPrice">@Model.Price</div></div>

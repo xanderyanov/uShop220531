@@ -21,7 +21,7 @@ public class Product
     public double Price { get; set; }
     public string BrandName { get; set; }
     public string ImgFileName { get; set; }
-    public bool New { get; set; }
+    public bool FlagNew { get; set; }
     public string HM_Balance { get; set; }
     public string GL_Balance { get; set; }
     public string LZ_Balance { get; set; }
@@ -64,7 +64,7 @@ public class Product
     public string CaseForm { get; set; }
     public string PhoneSearchFunction { get; set; }
     public string Stopwatch { get; set; }
-    public bool SaleLeader { get; set; }
+    public bool FlagSaleLeader { get; set; }
     public string ClockhandMovement { get; set; }
     public string Chronograph { get; set; }
     public string ClockFace { get; set; }
