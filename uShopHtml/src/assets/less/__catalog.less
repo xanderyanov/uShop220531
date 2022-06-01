@@ -32,6 +32,21 @@
 });
 }
 
+.catalog_wide {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+
+  .at-max(992px, {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  });
+
+.at-max(768px, {
+  grid-template-columns: repeat(3, 1fr);
+});
+}
+
 .catalog__item {
   display: flex;
   flex-direction: column;

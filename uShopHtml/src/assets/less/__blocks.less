@@ -179,5 +179,21 @@
 
 .leftMenu li a {
   display: flex;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1;
+  white-space: nowrap;
   padding: 5px 10px;
+  color: #fff;
+  text-decoration: none;
+  background: var(--color3);
+  transition: all 0.3s;
+}
+
+.leftMenu li a:hover {
+  background: var(--color1);
+}
+
+.leftMenu li.active a {
+  background: var(--color1);
 }
