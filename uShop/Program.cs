@@ -5,7 +5,7 @@ using uShop.Domain;
 
 CSVtoDB CSVtoDBexport = new CSVtoDB();
 
-CSVtoDBexport.ExportCSVAsync();
+//CSVtoDBexport.ExportCSVAsync();
 
 
 
@@ -33,7 +33,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints => {
+app.UseEndpoints(endpoints =>
+{
 
     endpoints.MapControllerRoute("route1",
        "Product/{id?}",

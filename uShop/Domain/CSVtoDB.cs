@@ -6,7 +6,8 @@ namespace uShop.Domain;
 
 public class CSVtoDB
 {
-    public async Task ExportCSVAsync() {
+    public async Task ExportCSVAsync()
+    {
 
         string connectionString = "mongodb://master:159753@localhost/ushopbase?authSource=admin";
         string databaseName = "ushopbase";
@@ -42,4 +43,4 @@ public class CSVtoDB
     }
 
 }
-    
+
