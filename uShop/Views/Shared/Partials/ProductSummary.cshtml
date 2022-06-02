@@ -2,5 +2,5 @@
 
 @if (string.IsNullOrEmpty(Model.ImgFileName)) { Model.ImgFileName = "logo1.png"; }
 
-<a href="Product/@Model.Id.ToString()" class="catalog__item">    <div class="catalog__itemImg">
+<a href="/Product/@Model.Id.ToString()" class="catalog__item">    <div class="catalog__itemImg">
         <div class="catalog__itemImgInner">            <img src="https://mirchasov64.ru/uploads/aaaclock/@Model.ImgFileName" alt="@Model.BrandName" />        </div>    </div>    <div class="catalog__itemTitle">@Model.Name</div>    <div class="catalog__itemPrice">@Model.Price</div></a>
