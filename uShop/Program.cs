@@ -39,6 +39,12 @@ app.UseEndpoints(endpoints => {
        "Product/{id?}",
        new { controller = "Product", action = "Product" });
 
+    //endpoints.MapControllerRoute(
+    //    name: "brand",
+    //    pattern: "Catalog/{id}",
+    //    defaults: new { area = "Btl", controller = "Catalog", action = "Brand", lang = "ru" }
+    //).WithDisplayName("Btl5");
+
     endpoints.MapControllerRoute("route2",
        "{controller}/{action}/{id?}",
        new { controller = "Home", action = "Index" });
