@@ -1,12 +1,24 @@
 ﻿using MmxCMS;
 using MongoDB.Driver;
+using System.Globalization;
 using uShop.Models;
 
 namespace uShop.Domain;
 
 public class CSVtoDB
 {
-    public async Task ExportCSVAsync()
+    public static double TryParseDouble(string src, double Default)
+    {
+        if (string.IsNullOrEmpty(src))
+            return Default;
+
+        if (double.TryParse(src.Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out double Result))
+            return Result;
+
+        return Default;
+    }
+
+    public void ExportCSVAsync()
     {
 
         string connectionString = "mongodb://master:159753@localhost/ushopbase?authSource=admin";
@@ -29,7 +41,69 @@ public class CSVtoDB
 
         while (csv.Next())
         {
-            var tovar = new Product { Code1C = csv["Code1C"].ToString(), Name = csv["Name"], Path = csv["Path"], Article = csv["Article"], TotalCount = csv["TotalCount"], Price = double.Parse(csv["Price"]), BrandName = csv["BrandName"], ImgFileName = csv["ImgFileName"], FlagNew = csv["FlagNew"] == "1", HM_Balance = csv["HM_Balance"], GL_Balance = csv["GL_Balance"], LZ_Balance = csv["LZ_Balance"], OR_Balance = csv["OR_Balance"], PZ_Balance = csv["PZ_Balance"], TA_Balance = csv["TA_Balance"], Battery10 = csv["Battery10"], Bluetooth = csv["Bluetooth"], Barometer = csv["Barometer"], Wristlet = csv["Wristlet"], Alarm = csv["Alarm"], ButtonsSoundToggler = csv["ButtonsSoundToggler"], WaterProtection = csv["WaterProtection"], DirtResistance = csv["DirtResistance"], Extra = csv["Extra"], TideIndicator = csv["TideIndicator"], BatteryLevelIndicator = csv["BatteryLevelIndicator"], Compass = csv["Compass"], CaseMaterial = csv["CaseMaterial"], Melody = csv["Melody"], WorldTime = csv["WorldTime"], MoonData = csv["MoonData"], Gender = csv["Gender"], ExactTimeRadioSignal = csv["ExactTimeRadioSignal"], CaseSize = csv["CaseSize"], PowerReserve = csv["PowerReserve"], ExtraBrightBacklight = csv["ExtraBrightBacklight"], SmartphoneConnection = csv["CasSmartphoneConnectioneSize"], Discount = csv["Discount"], SolarBattery = csv["SolarBattery"], Glass = csv["Glass"], BrandCountry = csv["BrandCountry"], ProducingCountry = csv["ProducingCountry"], Taimer = csv["Taimer"], FishingTimer = csv["FishingTimer"], Thermometer = csv["Thermometer"], MechanismType = csv["MechanismType"], ImpactResistance = csv["ImpactResistance"], MagneticFieldResistance = csv["MagneticFieldResistance"], CaseForm = csv["CaseForm"], PhoneSearchFunction = csv["PhoneSearchFunction"], Stopwatch = csv["Stopwatch"], FlagSaleLeader = csv["FlagSaleLeader"] == "Да", ClockhandMovement = csv["ClockhandMovement"], Chronograph = csv["Chronograph"], ClockFace = csv["ClockFace"], Pedometer = csv["Pedometer"], DiscountPrice = csv["DiscountPrice"] };
+            // double.TryParse(csv["Discount"], out double Discount); - создана переменная, действие с ней, а потом присвоение внутри new Product значения переменной к полю (Discount = Discount)
+            // сейчас универсальная функция на 10 строчке и ее вызов с обязательным параметром по умолчанию
+
+            var tovar = new Product
+            {
+                Code1C = csv["Code1C"].ToString(),
+                Name = csv["Name"],
+                Path = csv["Path"],
+                Article = csv["Article"],
+                BrandName = csv["BrandName"],
+                ImgFileName = csv["ImgFileName"],
+                Price = double.Parse(csv["Price"]),
+                Discount = TryParseDouble(csv["Discount"], 0.0),
+                DiscountPrice = double.Parse(csv["DiscountPrice"]),
+                FlagNew = csv["FlagNew"] == "1",
+                FlagSaleLeader = csv["FlagSaleLeader"] == "Да",
+                TotalCount = Int32.Parse(csv["TotalCount"]),
+                HM_Balance = Int32.Parse(csv["HM_Balance"]),
+                GL_Balance = Int32.Parse(csv["GL_Balance"]),
+                LZ_Balance = Int32.Parse(csv["LZ_Balance"]),
+                OR_Balance = Int32.Parse(csv["OR_Balance"]),
+                PZ_Balance = Int32.Parse(csv["PZ_Balance"]),
+                TA_Balance = Int32.Parse(csv["TA_Balance"]),
+                Battery10 = csv["Battery10"],
+                Bluetooth = csv["Bluetooth"],
+                Barometer = csv["Barometer"],
+                Wristlet = csv["Wristlet"],
+                Alarm = csv["Alarm"],
+                ButtonsSoundToggler = csv["ButtonsSoundToggler"],
+                WaterProtection = csv["WaterProtection"],
+                DirtResistance = csv["DirtResistance"],
+                Extra = csv["Extra"],
+                TideIndicator = csv["TideIndicator"],
+                BatteryLevelIndicator = csv["BatteryLevelIndicator"],
+                Compass = csv["Compass"],
+                CaseMaterial = csv["CaseMaterial"],
+                Melody = csv["Melody"],
+                WorldTime = csv["WorldTime"],
+                MoonData = csv["MoonData"],
+                Gender = csv["Gender"],
+                ExactTimeRadioSignal = csv["ExactTimeRadioSignal"],
+                CaseSize = csv["CaseSize"],
+                PowerReserve = csv["PowerReserve"],
+                ExtraBrightBacklight = csv["ExtraBrightBacklight"],
+                SmartphoneConnection = csv["CasSmartphoneConnectioneSize"],
+                SolarBattery = csv["SolarBattery"],
+                Glass = csv["Glass"],
+                BrandCountry = csv["BrandCountry"],
+                ProducingCountry = csv["ProducingCountry"],
+                Taimer = csv["Taimer"],
+                FishingTimer = csv["FishingTimer"],
+                Thermometer = csv["Thermometer"],
+                MechanismType = csv["MechanismType"],
+                ImpactResistance = csv["ImpactResistance"],
+                MagneticFieldResistance = csv["MagneticFieldResistance"],
+                CaseForm = csv["CaseForm"],
+                PhoneSearchFunction = csv["PhoneSearchFunction"],
+                Stopwatch = csv["Stopwatch"],
+                ClockhandMovement = csv["ClockhandMovement"],
+                Chronograph = csv["Chronograph"],
+                ClockFace = csv["ClockFace"],
+                Pedometer = csv["Pedometer"]
+            };
 
             Console.WriteLine($"Код1C: {csv["Code1C"]}, Наименование: {csv["Name"]}, Артикул: {csv["Article"]}, Цена: {csv["Price"]}");
 
@@ -39,7 +113,7 @@ public class CSVtoDB
 
         }
 
-        await collection.InsertManyAsync(Tovars);
+        collection.InsertMany(Tovars);
     }
 
 }

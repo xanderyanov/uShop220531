@@ -17,17 +17,20 @@ public class Product
     public string Name { get; set; }
     public string Path { get; set; }
     public string Article { get; set; }
-    public string TotalCount { get; set; }
-    public double Price { get; set; }
     public string BrandName { get; set; }
     public string ImgFileName { get; set; }
+    public double Price { get; set; }
+    public double Discount { get; set; }
+    public double DiscountPrice { get; set; }
     public bool FlagNew { get; set; }
-    public string HM_Balance { get; set; }
-    public string GL_Balance { get; set; }
-    public string LZ_Balance { get; set; }
-    public string OR_Balance { get; set; }
-    public string PZ_Balance { get; set; }
-    public string TA_Balance { get; set; }
+    public bool FlagSaleLeader { get; set; }
+    public int TotalCount { get; set; }
+    public int HM_Balance { get; set; }
+    public int GL_Balance { get; set; }
+    public int LZ_Balance { get; set; }
+    public int OR_Balance { get; set; }
+    public int PZ_Balance { get; set; }
+    public int TA_Balance { get; set; }
     public string Battery10 { get; set; }
     public string Bluetooth { get; set; }
     public string Barometer { get; set; }
@@ -50,7 +53,6 @@ public class Product
     public string PowerReserve { get; set; }
     public string ExtraBrightBacklight { get; set; }
     public string SmartphoneConnection { get; set; }
-    public string Discount { get; set; }
     public string SolarBattery { get; set; }
     public string Glass { get; set; }
     public string BrandCountry { get; set; }
@@ -64,11 +66,9 @@ public class Product
     public string CaseForm { get; set; }
     public string PhoneSearchFunction { get; set; }
     public string Stopwatch { get; set; }
-    public bool FlagSaleLeader { get; set; }
     public string ClockhandMovement { get; set; }
     public string Chronograph { get; set; }
     public string ClockFace { get; set; }
     public string Pedometer { get; set; }
-    public string DiscountPrice { get; set; }
 
 }
