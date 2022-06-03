@@ -16,6 +16,7 @@ public class Product
     public string Code1C { get; set; }
     public string Name { get; set; }
     public string Path { get; set; }
+    public List<string> CatLev { get; set; } = new();
     public string Article { get; set; }
     public string BrandName { get; set; }
     public string ImgFileName { get; set; }

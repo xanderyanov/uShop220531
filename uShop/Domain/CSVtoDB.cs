@@ -44,11 +44,27 @@ public class CSVtoDB
             // double.TryParse(csv["Discount"], out double Discount); - создана переменная, действие с ней, а потом присвоение внутри new Product значения переменной к полю (Discount = Discount)
             // сейчас универсальная функция на 10 строчке и ее вызов с обязательным параметром по умолчанию
 
+            string CategoriesString = csv["Path"];
+            string[] CatLev = CategoriesString.Split('/');
+            string code1c = csv["Code1C"];
+            //Console.WriteLine(Categories[1]);
+
+
+            //В память загружается существующая в Mongo база
+            //var existingTovar = Tovars.FirstOrDefault(x => x.Code1C == code1c);
+            //if (existingTovar == null) {
+            //    создание нового товара
+            //}
+            //else { 
+            //    обновление существующего
+            //}
+
             var tovar = new Product
             {
-                Code1C = csv["Code1C"].ToString(),
+                Code1C = code1c,
                 Name = csv["Name"],
                 Path = csv["Path"],
+                CatLev = CatLev.ToList(),
                 Article = csv["Article"],
                 BrandName = csv["BrandName"],
                 ImgFileName = csv["ImgFileName"],
