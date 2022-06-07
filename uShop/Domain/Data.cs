@@ -19,13 +19,15 @@ public static class Data
 
     public static List<string> Categories;
 
+    public static IMongoCollection<Product> productsCollection;
+
     public static void InitData(IConfiguration Configuration)
     {
         var dbConfigSection = Configuration.GetSection("DBConfig");
         var dbConfig = new DBConf(dbConfigSection);
         var mongoClient = new MongoClient(dbConfig.ConnectionString);
         DB = mongoClient.GetDatabase(dbConfig.DBName);
-        var productsCollection = DB.GetCollection<Product>("products");
+        productsCollection = DB.GetCollection<Product>("products");
         ExistingTovars = GetAllProducts();
         Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
         //Categories = Products.Select(x => x.CatLev[2] = "Наручные").Distinct().OrderBy(x => x).ToList();
@@ -33,7 +35,7 @@ public static class Data
 
     private static List<Product> GetAllProducts()
     {
-        var productsCollection = DB.GetCollection<Product>("products");
+        //var productsCollection = DB.GetCollection<Product>("products");
         BsonDocument filter = new BsonDocument();
         return productsCollection.Find(filter).ToList();
     }
@@ -91,15 +93,15 @@ public static class Data
 
         //var client = new MongoClient(connectionString);
         //var db = client.GetDatabase(databaseName);
-        var collection = DB.GetCollection<Product>("products");
+        //var collection = DB.GetCollection<Product>("products");
 
         //Удаление таблицы перед импортом нового
         //db.DropCollection(CollectionName);
 
         string[] lines = System.IO.File.ReadAllLines(@"D:\tovar.csv", System.Text.Encoding.UTF8);
         CSVFile csv = new(lines, ';', '"',
-            "Код;Наименование;Иерархия;Артикул;Количество;Цена;Бренд;ИмяФайлаИзображения;Новинка;HAPPY_МОЛЛОстаток;ГлобусОстаток;ЛазурныйОстаток;ОранжевыйОстаток;ПассажОстаток;ТауОстаток;10 летняя батарея;Bluetooth;Барометр\\альтиметр;Браслет;Будильник;Включение,отключение звука кнопок;Водозащита;Грязеустойчивость;Дополнительно;Индикатор приливов и отливов;Индикатор уровня заряда аккумулятора;Компас;Материал корпуса;Мелодия;Мировое время;Отображение данных о Луне;Пол;Прием радиосигнала точного времени;Размер корпуса;Резерв хода;Сверх яркая подсветка;Связь со смартфоном;Скидка;Солнечная батарея;Стекло;Страна бренда;Страна производитель;Таймер;Таймер рыбалки;Термометр;Тип механизма;Ударопрочность;Устойчивость к воздействию магнитного поля;Форма корпуса;Функция поиска телефона;Функция секундомера;Хит продаж;Ход стрелки;Хронограф;Циферблат;Шагомер;ЦенаСоСкидкой",
-            "Code1C;Name;Path;Article;TotalCount;Price;BrandName;ImgFileName;FlagNew;HM_Balance;GL_Balance;LZ_Balance;OR_Balance;PZ_Balance;TA_Balance;Battery10;Bluetooth;Barometer;Wristlet;Alarm;ButtonsSoundToggler;WaterProtection;DirtResistance;Extra;TideIndicator;BatteryLevelIndicator;Compass;CaseMaterial;Melody;WorldTime;MoonData;Gender;ExactTimeRadioSignal;CaseSize;PowerReserve;ExtraBrightBacklight;SmartphoneConnection;Discount;SolarBattery;Glass;BrandCountry;ProducingCountry;Taimer;FishingTimer;Thermometer;MechanismType;ImpactResistance;MagneticFieldResistance;CaseForm;PhoneSearchFunction;Stopwatch;FlagSaleLeader;ClockhandMovement;Chronograph;ClockFace;Pedometer;DiscountPrice");
+            "Код;Иерархия;Наименование;Артикул;Количество;Цена;Бренд;ИмяФайлаИзображения;Новинка;HAPPY_МОЛЛОстаток;ГлобусОстаток;ЛазурныйОстаток;ОранжевыйОстаток;ПассажОстаток;ТауОстаток;10 летняя батарея;Bluetooth;Барометр\\альтиметр;Браслет;Будильник;Включение,отключение звука кнопок;Водозащита;Грязеустойчивость;Дополнительно;Индикатор приливов и отливов;Индикатор уровня заряда аккумулятора;Компас;Материал корпуса;Мелодия;Мировое время;Отображение данных о Луне;Пол;Прием радиосигнала точного времени;Размер корпуса;Резерв хода;Сверх яркая подсветка;Связь со смартфоном;Скидка;Солнечная батарея;Стекло;Страна бренда;Страна производитель;Таймер;Таймер рыбалки;Термометр;Тип механизма;Ударопрочность;Устойчивость к воздействию магнитного поля;Форма корпуса;Функция поиска телефона;Функция секундомера;Хит продаж;Ход стрелки;Хронограф;Циферблат;Шагомер;ЦенаСоСкидкой",
+            "Code1C;Path;Name;Article;TotalCount;Price;BrandName;ImgFileName;FlagNew;HM_Balance;GL_Balance;LZ_Balance;OR_Balance;PZ_Balance;TA_Balance;Battery10;Bluetooth;Barometer;Wristlet;Alarm;ButtonsSoundToggler;WaterProtection;DirtResistance;Extra;TideIndicator;BatteryLevelIndicator;Compass;CaseMaterial;Melody;WorldTime;MoonData;Gender;ExactTimeRadioSignal;CaseSize;PowerReserve;ExtraBrightBacklight;SmartphoneConnection;Discount;SolarBattery;Glass;BrandCountry;ProducingCountry;Taimer;FishingTimer;Thermometer;MechanismType;ImpactResistance;MagneticFieldResistance;CaseForm;PhoneSearchFunction;Stopwatch;FlagSaleLeader;ClockhandMovement;Chronograph;ClockFace;Pedometer;DiscountPrice");
         csv.Rewind();
 
         List<Product> Tovars = new();
@@ -178,8 +180,8 @@ public static class Data
             mod |= tovar.Set(x => x.ClockFace, csv["ClockFace"]);
             mod |= tovar.Set(x => x.Pedometer, csv["Pedometer"]);
 
-            if (mod) { 
-                collection.ReplaceOne(new BsonDocument() { { "_id", tovar.Id } }, tovar, AlwaysUpsert);
+            if (mod) {
+                productsCollection.ReplaceOne(new BsonDocument() { { "_id", tovar.Id } }, tovar, AlwaysUpsert);
             }
            
 
