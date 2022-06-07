@@ -1,0 +1,44 @@
+mixin posts
+  .wrapper 
+    .container-fluid.container-xl 
+      .row.py-2.posts__area
+        .col-md-6 
+          .post 
+            .post__title Заголовок статьи
+            .post__text Текст статьи Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eos, maxime est inventore minima dicta earum porro corrupti reiciendis libero.
+            .post__author Автор статьи
+        .col-md-6 
+          .post 
+            .post__title Заголовок статьи
+            .post__text Текст статьи Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eos, maxime est inventore minima dicta earum porro corrupti reiciendis libero.
+            .post__author Автор статьи
+        .col-md-6 
+          .post 
+            .post__title Заголовок статьи
+            .post__text Текст статьи Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eos, maxime est inventore minima dicta earum porro corrupti reiciendis libero.
+            .post__author Автор статьи
+        .col-md-6 
+          .post 
+            .post__title Заголовок статьи
+            .post__text Текст статьи Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eos, maxime est inventore minima dicta earum porro corrupti reiciendis libero.
+            .post__author Автор статьи
+
+mixin addPost 
+  .wrapper 
+    .container-fluid.container-xl 
+      .row.py-2.posts__area
+        .col-12 
+          .addPost
+            form
+              .mb-3
+                label.form-label(for='Title') Title
+                input#Title.form-control(type='text')
+              .mb-3
+                label.form-label(for='Text') Text
+                textarea#Text.form-control(type='text')
+              .mb-3
+                label.form-label(for='Author') Author
+                input#Author.form-control(type='text')
+              button.btn.btn-primary(type='submit') Submit
+
+            

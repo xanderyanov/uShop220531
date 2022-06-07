@@ -1,0 +1,34 @@
+- var pageTitle = 'Главная страница'
+- var seoKeywords = 'Ключевые слова для страницы'
+- var seoDesc = 'Сео описание для страницы'
+- var sliderTitle1 = 'Популярные товары'
+- var commentsTitle = 'Отзывы'
+
+include __const
+include __blocks
+include __blog
+
+<!DOCTYPE html>
+html(lang="ru-RU")
++head
+body
+  .layout
+    .site__header
+      +topLine
+      +header
+      +topMenu
+      
+
+    .site__center
+      +posts
+      +addPost
+
+    .site__footer
+      span 1
+
+      
+  +locationPopUp
+  
+  +scripts
+
+    

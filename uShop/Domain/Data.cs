@@ -30,12 +30,10 @@ public static class Data
         productsCollection = DB.GetCollection<Product>("products");
         ExistingTovars = GetAllProducts();
         Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
-        //Categories = Products.Select(x => x.CatLev[2] = "Наручные").Distinct().OrderBy(x => x).ToList();
     }
 
     private static List<Product> GetAllProducts()
     {
-        //var productsCollection = DB.GetCollection<Product>("products");
         BsonDocument filter = new BsonDocument();
         return productsCollection.Find(filter).ToList();
     }
