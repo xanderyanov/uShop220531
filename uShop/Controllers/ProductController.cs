@@ -25,7 +25,7 @@ namespace uShop.Controllers
                 return NotFound();
             }
 
-            Product product = Data.Products.Find(x => x.Id == Id);
+            Product product = Data.ExistingTovars.Find(x => x.Id == Id);
 
             return View("Product", product);
         }

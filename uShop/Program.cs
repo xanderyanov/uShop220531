@@ -5,7 +5,6 @@ using uShop.Domain;
 
 CSVtoDB CSVtoDBexport = new CSVtoDB();
 
-CSVtoDBexport.ExportCSVAsync();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 Data.InitData(builder.Configuration);
+
+Data.ImportCSV();     //Обновление товаров
 
 var app = builder.Build();
 

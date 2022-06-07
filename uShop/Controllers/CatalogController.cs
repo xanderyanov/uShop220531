@@ -17,7 +17,7 @@ namespace uShop.Controllers
 
         public IActionResult Brand(string id, int productPage = 1)
         {
-            var products = Data.Products;
+            var products = Data.ExistingTovars;
 
             Bucket.SelectedCategory = id;
             Bucket.Title = $"Часы {id} в магазине Мир Часов XXL";
@@ -47,7 +47,7 @@ namespace uShop.Controllers
         {
             return View("Catalog", new ProductsListViewModel
             {
-                Products = Data.Products
+                Products = Data.ExistingTovars
                    //.OrderBy(p => p.Id)
                    .Skip((productPage - 1) * PageSize)
                    .Take(PageSize),
@@ -55,7 +55,7 @@ namespace uShop.Controllers
                 {
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = Data.Products.Count()
+                    TotalItems = Data.ExistingTovars.Count()
                 },
                 CurrentCategory = id
             });

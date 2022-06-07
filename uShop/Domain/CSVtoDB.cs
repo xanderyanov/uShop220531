@@ -18,16 +18,21 @@ public class CSVtoDB
         return Default;
     }
 
-    public void ExportCSVAsync()
+    public static List<Product> ExportCSVAsync()
     {
 
-        string connectionString = "mongodb://master:159753@localhost/ushopbase?authSource=admin";
-        string databaseName = "ushopbase";
-        string CollectionName = "products";
+        //string connectionString = "mongodb://master:159753@localhost/ushopbase?authSource=admin";
+        //string databaseName = "ushopbase";
+        //string CollectionName = "products";
 
-        var client = new MongoClient(connectionString);
-        var db = client.GetDatabase(databaseName);
-        var collection = db.GetCollection<Product>(CollectionName);
+        //var client = new MongoClient(connectionString);
+        //var db = client.GetDatabase(databaseName);
+        //var collection = db.GetCollection<Product>(CollectionName);
+        
+        //Удаление таблицы перед импортом нового
+        //db.DropCollection(CollectionName);
+
+
 
 
         string[] lines = System.IO.File.ReadAllLines(@"D:\tovar.csv", System.Text.Encoding.UTF8);
@@ -37,7 +42,6 @@ public class CSVtoDB
         csv.Rewind();
 
         List<Product> Tovars = new();
-
 
         while (csv.Next())
         {
@@ -121,16 +125,49 @@ public class CSVtoDB
                 Pedometer = csv["Pedometer"]
             };
 
-            Console.WriteLine($"Код1C: {csv["Code1C"]}, Наименование: {csv["Name"]}, Артикул: {csv["Article"]}, Цена: {csv["Price"]}");
+            //Console.WriteLine($"Код1C: {csv["Code1C"]}, Наименование: {csv["Name"]}, Артикул: {csv["Article"]}, Цена: {csv["Price"]}");
 
             Tovars.Add(tovar);
+
+
 
             //await collection.InsertOneAsync(tovar);
 
         }
+            //collection.InsertMany(Tovars);
 
-        collection.InsertMany(Tovars);
+        return Tovars;
     }
+
+    //public static List<Product> UpdateTovar(Data data, Product src)
+    //{
+    //    if (src == null) return null;
+
+    //    BtlClient result = domain.BtlClients.FindOrCreateWithYcId(src.id);
+    //    bool mod = false;
+    //    mod |= result.Set(x => x.Name, csv["Name"]);
+    //    mod |= result.Set(x => x.Phone, src.phone);
+    //    mod |= result.Set(x => x.Email, src.email);
+    //    mod |= result.Set(x => x.Sex, src.sex);
+    //    mod |= result.Set(x => x.Discount, src.discount);
+    //    mod |= result.Set(x => x.Importance, src.importance);
+    //    mod |= result.Set(x => x.Card, src.card);
+    //    DateTime birthday;
+    //    if (DateTime.TryParse(src.birth_date, out birthday))
+    //        mod |= result.Set(x => x.BirthDate, birthday);
+    //    mod |= result.Set(x => x.Comment, src.comment);
+    //    mod |= result.Set(x => x.SmsCheck, src.sms_check);
+    //    mod |= result.Set(x => x.SmsNotification, src.sms_not);
+    //    mod |= result.Set(x => x.Spent, src.spent);
+    //    mod |= result.Set(x => x.Balance, src.balance);
+    //    mod |= result.Set(x => x.Visits, src.visits);
+    //    mod |= result.Set(x => x.LastChangeDate, src.last_change_date);
+
+    //    if (mod) result.Save();
+    //    return result;
+    //}
+
+
 
 }
 

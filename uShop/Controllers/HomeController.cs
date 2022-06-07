@@ -15,7 +15,7 @@ public class HomeController : BaseController
 
     public IActionResult Index()
     {
-        return View(Data.Products);
+        return View(Data.ExistingTovars);
     }
 
 
