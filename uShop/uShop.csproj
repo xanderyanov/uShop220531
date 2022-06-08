@@ -4,10 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<ScopedCssEnabled>false</ScopedCssEnabled>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Controllers\AdminController.cs" />
+    <Compile Remove="Domain\CSVtoDB.cs" />
     <Compile Remove="Models\MenuItem.cs" />
   </ItemGroup>
 

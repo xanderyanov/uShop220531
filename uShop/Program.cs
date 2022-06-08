@@ -1,9 +1,9 @@
 using MmxCMS;
 using MongoDB.Driver;
 using uShop;
-using uShop.Domain;
+//using uShop.Domain;
 
-CSVtoDB CSVtoDBexport = new CSVtoDB();
+//CSVtoDB CSVtoDBexport = new CSVtoDB();
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +26,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

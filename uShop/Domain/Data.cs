@@ -29,7 +29,8 @@ public static class Data
         DB = mongoClient.GetDatabase(dbConfig.DBName);
         productsCollection = DB.GetCollection<Product>("products");
         ExistingTovars = GetAllProducts();
-        Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
+        //Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
+        Categories = ExistingTovars.Select(x => x.BrandName = "Casio").Distinct().OrderBy(x => x).ToList();
     }
 
     private static List<Product> GetAllProducts()
@@ -84,20 +85,7 @@ public static class Data
 
     public static void ImportCSV()
     {
-
-        //string connectionString = "mongodb://master:159753@localhost/ushopbase?authSource=admin";
-        //string databaseName = "ushopbase";
-        //string CollectionName = "products";
-
-        //var client = new MongoClient(connectionString);
-        //var db = client.GetDatabase(databaseName);
-        //var collection = DB.GetCollection<Product>("products");
-
-        //Удаление таблицы перед импортом нового
-        //db.DropCollection(CollectionName);
-
         string[] lines = System.IO.File.ReadAllLines(@"D:\tovar2.csv", System.Text.Encoding.UTF8);
-        //string[] lines = System.IO.File.ReadAllLines(@"D:\tovar.csv");
         CSVFile csv = new(lines, ';', '"',
             "Код;Иерархия;Наименование;Артикул;Количество;Цена;Бренд;ИмяФайлаИзображения;Новинка;HAPPY_МОЛЛОстаток;ГлобусОстаток;ЛазурныйОстаток;ОранжевыйОстаток;ПассажОстаток;ТауОстаток;10 летняя батарея;Bluetooth;Барометр\\альтиметр;Браслет;Будильник;Включение,отключение звука кнопок;Водозащита;Грязеустойчивость;Дополнительно;Индикатор приливов и отливов;Индикатор уровня заряда аккумулятора;Компас;Материал корпуса;Мелодия;Мировое время;Отображение данных о Луне;Пол;Прием радиосигнала точного времени;Размер корпуса;Резерв хода;Сверх яркая подсветка;Связь со смартфоном;Скидка;Солнечная батарея;Стекло;Страна бренда;Страна производитель;Таймер;Таймер рыбалки;Термометр;Тип механизма;Ударопрочность;Устойчивость к воздействию магнитного поля;Форма корпуса;Функция поиска телефона;Функция секундомера;Хит продаж;Ход стрелки;Хронограф;Циферблат;Шагомер;ЦенаСоСкидкой",
             "Code1C;Path;Name;Article;TotalCount;Price;BrandName;ImgFileName;FlagNew;HM_Balance;GL_Balance;LZ_Balance;OR_Balance;PZ_Balance;TA_Balance;Battery10;Bluetooth;Barometer;Wristlet;Alarm;ButtonsSoundToggler;WaterProtection;DirtResistance;Extra;TideIndicator;BatteryLevelIndicator;Compass;CaseMaterial;Melody;WorldTime;MoonData;Gender;ExactTimeRadioSignal;CaseSize;PowerReserve;ExtraBrightBacklight;SmartphoneConnection;Discount;SolarBattery;Glass;BrandCountry;ProducingCountry;Taimer;FishingTimer;Thermometer;MechanismType;ImpactResistance;MagneticFieldResistance;CaseForm;PhoneSearchFunction;Stopwatch;FlagSaleLeader;ClockhandMovement;Chronograph;ClockFace;Pedometer;DiscountPrice");
@@ -108,7 +96,7 @@ public static class Data
         while (csv.Next())
         {
             // double.TryParse(csv["Discount"], out double Discount); - создана переменная, действие с ней, а потом присвоение внутри new Product значения переменной к полю (Discount = Discount)
-            // сейчас универсальная функция на 10 строчке и ее вызов с обязательным параметром по умолчанию
+            // сейчас универсальная функция TryParseDouble() и ее вызов с обязательным параметром по умолчанию
 
             string CategoriesString = csv["Path"];
             var CatLev = CategoriesString.Split('/').ToList();
