@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\AdminController.cs" />
     <Compile Remove="Models\MenuItem.cs" />
   </ItemGroup>
 

@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 
 Data.InitData(builder.Configuration);
 
-Data.ImportCSV();     //Обновление товаров
+//Data.ImportCSV();     //Обновление товаров
 
 var app = builder.Build();
 

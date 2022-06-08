@@ -15,5 +15,7 @@ mixin catalog
                   .catalog__itemImgInner
                     img(src=item.img, alt="")
                 .catalog__itemTitle=item.title 
-                .catalog__itemPrice=item.price 
+                .catalog__itemPrice
+                  .catalog__itemPrice_old=item.oldPrice 
+                  .catalog__itemPrice_current=item.price 
 

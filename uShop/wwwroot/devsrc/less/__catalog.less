@@ -89,10 +89,23 @@
 }
 
 .catalog__itemPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog__itemPrice_old {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--color4);
+  text-decoration: line-through;
+  margin-right: 20px;
+}
+
+.catalog__itemPrice_current {
   font-size: 16px;
   line-height: 1.2;
   color: var(--color1);
-  text-align: center;
 }
 
 .catalog__itemDiscount {

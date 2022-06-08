@@ -8,4 +8,6 @@
         @if(Model.FlagNew){<div class="catalog__itemNew">New</div>}
         @if(Model.FlagSaleLeader){<div class="catalog__itemNew">Sale</div>}
         
-    </div>    <div class="catalog__itemTitle">@Model.Name</div>    <div class="catalog__itemPrice">@Model.Price ₽</div></a>
+    </div>    <div class="catalog__itemTitle">@Model.Name</div>    <div class="catalog__itemPrice">
+        @if(Model.Discount > 0){<div class="catalog__itemPrice_old">@Model.Price</div>}
+        <div class="catalog__itemPrice_current">@Model.DiscountPrice ₽</div>            </div></a>

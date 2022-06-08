@@ -96,7 +96,8 @@ public static class Data
         //Удаление таблицы перед импортом нового
         //db.DropCollection(CollectionName);
 
-        string[] lines = System.IO.File.ReadAllLines(@"D:\tovar.csv", System.Text.Encoding.UTF8);
+        string[] lines = System.IO.File.ReadAllLines(@"D:\tovar2.csv", System.Text.Encoding.UTF8);
+        //string[] lines = System.IO.File.ReadAllLines(@"D:\tovar.csv");
         CSVFile csv = new(lines, ';', '"',
             "Код;Иерархия;Наименование;Артикул;Количество;Цена;Бренд;ИмяФайлаИзображения;Новинка;HAPPY_МОЛЛОстаток;ГлобусОстаток;ЛазурныйОстаток;ОранжевыйОстаток;ПассажОстаток;ТауОстаток;10 летняя батарея;Bluetooth;Барометр\\альтиметр;Браслет;Будильник;Включение,отключение звука кнопок;Водозащита;Грязеустойчивость;Дополнительно;Индикатор приливов и отливов;Индикатор уровня заряда аккумулятора;Компас;Материал корпуса;Мелодия;Мировое время;Отображение данных о Луне;Пол;Прием радиосигнала точного времени;Размер корпуса;Резерв хода;Сверх яркая подсветка;Связь со смартфоном;Скидка;Солнечная батарея;Стекло;Страна бренда;Страна производитель;Таймер;Таймер рыбалки;Термометр;Тип механизма;Ударопрочность;Устойчивость к воздействию магнитного поля;Форма корпуса;Функция поиска телефона;Функция секундомера;Хит продаж;Ход стрелки;Хронограф;Циферблат;Шагомер;ЦенаСоСкидкой",
             "Code1C;Path;Name;Article;TotalCount;Price;BrandName;ImgFileName;FlagNew;HM_Balance;GL_Balance;LZ_Balance;OR_Balance;PZ_Balance;TA_Balance;Battery10;Bluetooth;Barometer;Wristlet;Alarm;ButtonsSoundToggler;WaterProtection;DirtResistance;Extra;TideIndicator;BatteryLevelIndicator;Compass;CaseMaterial;Melody;WorldTime;MoonData;Gender;ExactTimeRadioSignal;CaseSize;PowerReserve;ExtraBrightBacklight;SmartphoneConnection;Discount;SolarBattery;Glass;BrandCountry;ProducingCountry;Taimer;FishingTimer;Thermometer;MechanismType;ImpactResistance;MagneticFieldResistance;CaseForm;PhoneSearchFunction;Stopwatch;FlagSaleLeader;ClockhandMovement;Chronograph;ClockFace;Pedometer;DiscountPrice");
@@ -129,6 +130,7 @@ public static class Data
             mod |= tovar.Set(x => x.ImgFileName, csv["ImgFileName"]);
             mod |= tovar.Set(x => x.Price, double.Parse(csv["Price"]));
             mod |= tovar.Set(x => x.Discount, TryParseDouble(csv["Discount"], 0.0));
+            mod |= tovar.Set(x => x.DiscountPrice, TryParseDouble(csv["DiscountPrice"], 0.0));
             mod |= tovar.Set(x => x.FlagNew, csv["FlagNew"] == "1");
             mod |= tovar.Set(x => x.FlagSaleLeader, csv["FlagSaleLeader"] == "Да");
             mod |= tovar.Set(x => x.TotalCount, Int32.Parse(csv["TotalCount"]));
@@ -181,11 +183,8 @@ public static class Data
             if (mod) {
                 productsCollection.ReplaceOne(new BsonDocument() { { "_id", tovar.Id } }, tovar, AlwaysUpsert);
             }
-           
-
 
             //Console.WriteLine($"Код1C: {csv["Code1C"]}, Наименование: {csv["Name"]}, Артикул: {csv["Article"]}, Цена: {csv["Price"]}");
-
 
         }
 

@@ -15,9 +15,11 @@
             <div class="col-9">
                 <h1>@Model.Name</h1>
 
-                <h3>Цена: @Model.Price руб.</h3>
+                @if(Model.Discount > 0){
+                    <span>Скидка @Model.Discount %</span>
+                    <div class="catalog__itemPrice_old">Цена: @Model.Price руб.</div>
+                }
                 <h3>Цена: @Model.DiscountPrice руб.</h3>
-                @if(Model.Discount > 0){<span>Скидка @Model.Discount %</span>}
 
                 <table class="table table-striped">
                     <thead>
