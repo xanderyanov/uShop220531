@@ -17,10 +17,14 @@ public static class Data
     public static IMongoDatabase DB;
 
     public static List<Product> ExistingTovars;
+    
+    public static List<Blog> ExistingPosts;
 
     public static List<string> Categories;
 
     public static IMongoCollection<Product> productsCollection;
+
+    public static IMongoCollection<Blog> blogCollection;
 
     public static void InitData(IConfiguration Configuration)
     {
@@ -28,11 +32,19 @@ public static class Data
         var dbConfig = new DBConf(dbConfigSection);
         var mongoClient = new MongoClient(dbConfig.ConnectionString);
         DB = mongoClient.GetDatabase(dbConfig.DBName);
+
+        //Каталог и все такое
         productsCollection = DB.GetCollection<Product>("products");
         ExistingTovars = GetAllProducts();
         //Categories = ExistingTovars.Select(x => x.CatLev[1]).Distinct().OrderBy(x => x).ToList();
         //Categories = ExistingTovars.Select(x => x.BrandName = "Casio").Distinct().OrderBy(x => x).ToList();
         Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
+
+
+        //Блог
+        blogCollection = DB.GetCollection<Blog>("blogpost");
+        ExistingPosts = GetAllPosts();
+
     }
 
     private static List<Product> GetAllProducts()
@@ -40,6 +52,31 @@ public static class Data
         BsonDocument filter = new BsonDocument();
         return productsCollection.Find(filter).ToList();
     }
+
+    private static List<Blog> GetAllPosts()
+    {
+        BsonDocument filter = new BsonDocument();
+        return blogCollection.Find(filter).ToList();
+    }    
+    
+    //private static Blog CreatePost()
+    //{
+    //    BsonDocument filter = new BsonDocument();
+    //    return blogCollection.Find(filter).ToList();
+    //}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static double TryParseDouble(string src, double Default)
     {
