@@ -8,6 +8,7 @@ using MmxCMS;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using uShop.Models;
+using uShop.Domain;
 
 namespace uShop;
 
@@ -29,8 +30,9 @@ public static class Data
         DB = mongoClient.GetDatabase(dbConfig.DBName);
         productsCollection = DB.GetCollection<Product>("products");
         ExistingTovars = GetAllProducts();
-        //Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
-        Categories = ExistingTovars.Select(x => x.BrandName = "Casio").Distinct().OrderBy(x => x).ToList();
+        //Categories = ExistingTovars.Select(x => x.CatLev[1]).Distinct().OrderBy(x => x).ToList();
+        //Categories = ExistingTovars.Select(x => x.BrandName = "Casio").Distinct().OrderBy(x => x).ToList();
+        Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
     }
 
     private static List<Product> GetAllProducts()

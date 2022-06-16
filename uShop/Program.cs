@@ -1,14 +1,9 @@
 using MmxCMS;
 using MongoDB.Driver;
 using uShop;
-//using uShop.Domain;
-
-//CSVtoDB CSVtoDBexport = new CSVtoDB();
-
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 Data.InitData(builder.Configuration);
@@ -34,12 +29,6 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute("route1",
        "Product/{id?}",
        new { controller = "Product", action = "Product" });
-
-    //endpoints.MapControllerRoute(
-    //    name: "brand",
-    //    pattern: "Catalog/{id}",
-    //    defaults: new { area = "Btl", controller = "Catalog", action = "Brand", lang = "ru" }
-    //).WithDisplayName("Btl5");
 
     endpoints.MapControllerRoute("route2",
        "{controller}/{action}/{id?}",

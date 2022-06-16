@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace uShop
+namespace uShop.Domain
 {
     public class DBConf
     {
