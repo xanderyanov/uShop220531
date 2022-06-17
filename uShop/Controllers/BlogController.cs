@@ -17,6 +17,10 @@ namespace uShop.Controllers
             return View("Blog", Data.ExistingPosts);
         }
 
+             
+        
+        
+
         [HttpPost]
         public IActionResult CreatePost(Blog post) 
         {

@@ -16,7 +16,7 @@
                     <div class="post">
                         <div class="post__title">@post.Title</div>
                         <div class="post__text">@post.Text</div>
-                        <div class="post__author">@post.Author</div>
+                        <div class="post__author">@post.PostDate / @post.Author</div>
                     </div>
                 </div>
             }
@@ -26,29 +26,4 @@
         </div>
     </div>
 </div>
-<div class="wrapper">
-    <div class="container-fluid container-xl">
-        <div class="row py-2 posts__area">
-            <div class="col-12">
-                <div class="addPost">
-                    <form action="/Blog/CreatePost" method="post">
 
-                        <div class="mb-3">
-                            <label class="form-label" for="Title">Title</label>
-                            <input class="form-control" id="Title" name="Title" type="text" value="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="Text">Text</label>
-                            <textarea class="form-control" id="Text" name="Text" type="text"  value=""></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="Author">Author</label>
-                            <input class="form-control" id="Author" name="Author" type="text"  value="">
-                        </div>
-                        <button class="btn btn-primary" type="submit" >Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

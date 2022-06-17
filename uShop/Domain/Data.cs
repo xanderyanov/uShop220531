@@ -56,7 +56,11 @@ public static class Data
     private static List<Blog> GetAllPosts()
     {
         BsonDocument filter = new BsonDocument();
-        return blogCollection.Find(filter).ToList();
+        var result = blogCollection.Find(filter).ToList();
+
+        var resultWithSortByDate = result.OrderByDescending(p => p.PostDate);
+
+        return resultWithSortByDate.ToList();
     }    
     
     //private static Blog CreatePost()
