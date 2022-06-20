@@ -6,7 +6,9 @@ using uShop.Models;
 using System.Diagnostics;
 using System.Linq;
 using uShop.Models.ViewModels;
-
+using Newtonsoft.Json;
+using System;
+using System.Text;
 
 namespace uShop.Controllers
 {
@@ -43,8 +45,33 @@ namespace uShop.Controllers
             });
         }
 
-        public IActionResult Index(string id, int productPage = 1)
+
+        public class ViewSettingsClass
         {
+            public bool NewOnly { get; set; } = false;
+
+        }
+
+
+        public IActionResult Index(string id, int productPage = 1, string viewSettingsStr = null)
+        {
+
+            ViewSettingsClass viewSettings = null;
+            try
+            {
+                viewSettings = JsonConvert.DeserializeObject<ViewSettingsClass>(Encoding.UTF8.GetString(Convert.FromBase64String(viewSettingsStr)));
+            }
+            catch
+            {
+                viewSettings = new();
+            }
+
+            ViewData["Booo"] = new[] { 10, 20, 30 };
+            
+            ViewBag.ViewBagData = new[] { 100, 200, 300 };
+
+            ViewBag.ViewSettings = viewSettings;
+
             return View("Catalog", new ProductsListViewModel
             {
                 Products = Data.ExistingTovars
