@@ -7,14 +7,16 @@
     var currentUrl = "/Catalog";
     
     function applySettings() {
-        viewSettings.NewOnly = $("#flexCheckDefault")[0].checked;
+        viewSettings.InexpensivePrice = $("#IdInexpensive").val();
+        viewSettings.NewOnly = $("#IdNewOnly")[0].checked;
+        viewSettings.SaleLeaderOnly = $("#IdSaleLeaderOnly")[0].checked;
         var vs = btoa(JSON.stringify(viewSettings));
         window.location.href = currentUrl + "?viewSettingsStr=" + vs;
         return false;
     }
 
     
-</script><div class="wrapper">    <div class="container-fluid container-xl">        <div class="row py-2 catalog__area">            <div class="col-3">                <vc:navigation-menu product="new Product()" />            </div>            <div class="col-9">                <h1 class="display-4">@Model.CurrentCategory</h1>                <div class="row mb-3">                    <div class="col d-flex">                        <div class="form-check">                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @if (viewSettings.NewOnly) {<text>checked</text>} >                            <label class="form-check-label" for="flexCheckDefault">                                Default checkbox                            </label>                        </div>                        <div class="btn btn-primary" onclick="return applySettings();">Показать</div>                    </div>                </div>                @*<div class="row mb-3">                    @foreach(int x in (int[])ViewData["Booo"])
+</script><div class="wrapper">    <div class="container-fluid container-xl">        <div class="row py-2 catalog__area">            <div class="col-3">                <vc:navigation-menu product="new Product()" />            </div>            <div class="col-9">                <h1 class="display-4">@Model.CurrentCategory</h1>                <div class="row mb-3">                    <div class="col d-flex">                        <div class="form-check">                            <input class="form-control" type="text"  id="IdInexpensive" @if (viewSettings.InexpensivePrice != "") {<text>value="@viewSettings.InexpensivePrice"</text>} >                            <label class="form-check-label" for="IdInexpensive">                                 и дешевле                            </label>                        </div>                        <div class="form-check">                            <input class="form-check-input" type="checkbox" value="" id="IdNewOnly" @if (viewSettings.NewOnly) {<text>checked</text>} >                            <label class="form-check-label" for="IdNewOnly">                                Новинка                            </label>                        </div>                        <div class="form-check">                            <input class="form-check-input" type="checkbox" value="" id="IdSaleLeaderOnly" @if (viewSettings.SaleLeaderOnly) {<text>checked</text>} >                            <label class="form-check-label" for="IdSaleLeaderOnly">                                Лидер продаж                            </label>                        </div>                        <div class="btn btn-primary" onclick="return applySettings();">Показать</div>                    </div>                </div>                @*<div class="row mb-3">                    @foreach(int x in (int[])ViewData["Booo"])
                     {
                         <div>
                             @x
@@ -26,9 +28,5 @@
                             @x
                         </div>
                     }
-                </div>*@                @*<div class="menu">                    <ul>
-                    @foreach (var p in Model.Products)
-                    {                        <li>@p.CatLev[0]                                                            </li>                    }
-                    </ul>
-                </div>*@                <div class="catalog">                    @foreach (var p in Model.Products)
-                    {                        <partial name="Partials/ProductSummary" model="p" />                    }                </div>                <div class="row">                    <div page-model="@Model.PagingInfo" page-action="Brand" page-classes-enabled="true"                         page-class="btn m-1 " page-class-normal="m-1 btn-outline-dark"                         page-class-selected="btn-primary"                         class="pull-right m-1">                    </div>                </div>            </div>        </div>    </div></div>
+                </div>*@                <div class="catalog">                    @foreach (var p in Model.Products)
+                    {                        <partial name="Partials/ProductSummary" model="p" />                    }                </div>                <div class="row">                    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"                         page-class="btn m-1 " page-class-normal="m-1 btn-outline-dark"                         page-class-selected="btn-primary"                         class="pull-right m-1">                    </div>                </div>            </div>        </div>    </div></div>

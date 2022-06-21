@@ -49,6 +49,8 @@ namespace uShop.Controllers
         public class ViewSettingsClass
         {
             public bool NewOnly { get; set; } = false;
+            public bool SaleLeaderOnly { get; set; } = false;
+            public string InexpensivePrice { get; set; }
 
         }
 
@@ -72,12 +74,25 @@ namespace uShop.Controllers
 
             ViewBag.ViewSettings = viewSettings;
 
+            IEnumerable<Product> Products = Data.ExistingTovars;
+            //.OrderBy(p => p.Id)
+            //if (viewSettings.NewOnly) Products = Products.Where(p => p.FlagNew);
+            //if (viewSettings.SaleLeaderOnly) Products = Products.Where(p => p.FlagSaleLeader);
+            
+            Products = Products.Where(p => 
+                (!viewSettings.NewOnly || p.FlagNew) && 
+                (!viewSettings.SaleLeaderOnly || p.FlagSaleLeader) &&
+                (string.IsNullOrEmpty(viewSettings.InexpensivePrice) || p.DiscountPrice < Double.Parse(viewSettings.InexpensivePrice))
+            );
+
+            Products = Products
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize);
+
             return View("Catalog", new ProductsListViewModel
             {
-                Products = Data.ExistingTovars
-                   //.OrderBy(p => p.Id)
-                   .Skip((productPage - 1) * PageSize)
-                   .Take(PageSize),
+                Products = Products,
+                ViewSettings = viewSettings,
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
