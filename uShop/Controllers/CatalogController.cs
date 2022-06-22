@@ -14,7 +14,7 @@ namespace uShop.Controllers
 {
     public class CatalogController : BaseController
     {
-        public int PageSize = 64;
+        public int PageSize = 8;
               
 
         public IActionResult Brand(string id, int productPage = 1)
