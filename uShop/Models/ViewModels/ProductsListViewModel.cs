@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static uShop.BaseController;
 using static uShop.Controllers.CatalogController;
 
 namespace uShop.Models.ViewModels;

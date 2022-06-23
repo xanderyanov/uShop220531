@@ -15,22 +15,43 @@ namespace uShop.Controllers
     public class CatalogController : BaseController
     {
         public int PageSize = 8;
-              
 
-        public IActionResult Brand(string id, int productPage = 1)
+        public IActionResult Brand(string id, int productPage = 1, string viewSettingsStr = null)
         {
             var products = Data.ExistingTovars;
+
+            ViewSettingsClass viewSettings = null;
+            try
+            {
+                viewSettings = JsonConvert.DeserializeObject<ViewSettingsClass>(Encoding.UTF8.GetString(Convert.FromBase64String(viewSettingsStr)));
+            }
+            catch
+            {
+                viewSettings = new();
+            }
+
+            ViewBag.ViewSettings = viewSettings;
 
             Bucket.SelectedCategory = id;
             Bucket.Title = $"Часы {id} в магазине Мир Часов XXL";
 
+            IEnumerable<Product> Products = Data.ExistingTovars;
+
+            Products = Products.Where(p =>
+                (!viewSettings.NewOnly || p.FlagNew) &&
+                (!viewSettings.SaleLeaderOnly || p.FlagSaleLeader) &&
+                (string.IsNullOrEmpty(viewSettings.InexpensivePrice) || p.DiscountPrice < Double.Parse(viewSettings.InexpensivePrice))
+            );
+
+            Products = Products
+                .Where(p => id == null || p.BrandName == id)
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize);
+
             return View("Catalog", new ProductsListViewModel
             {
-                Products = products
-                   .Where(p => id == null || p.BrandName == id)
-                   //.OrderBy(p => p.Id)
-                   .Skip((productPage - 1) * PageSize)
-                   .Take(PageSize),
+                Products = Products,
+                ViewSettings = viewSettings,
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
@@ -46,13 +67,7 @@ namespace uShop.Controllers
         }
 
 
-        public class ViewSettingsClass
-        {
-            public bool NewOnly { get; set; } = false;
-            public bool SaleLeaderOnly { get; set; } = false;
-            public string InexpensivePrice { get; set; }
 
-        }
 
 
         public IActionResult Index(string id, int productPage = 1, string viewSettingsStr = null)
@@ -68,9 +83,10 @@ namespace uShop.Controllers
                 viewSettings = new();
             }
 
+            /*************/
             ViewData["Booo"] = new[] { 10, 20, 30 };
-            
             ViewBag.ViewBagData = new[] { 100, 200, 300 };
+            /*************/
 
             ViewBag.ViewSettings = viewSettings;
 

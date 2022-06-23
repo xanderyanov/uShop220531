@@ -26,4 +26,12 @@ public class BaseController : Controller
         ViewData["Bucket"] = Bucket;
         base.OnActionExecuting(context);
     }
+
+    public class ViewSettingsClass
+    {
+        public bool NewOnly { get; set; } = false;
+        public bool SaleLeaderOnly { get; set; } = false;
+        public string InexpensivePrice { get; set; }
+
+    }
 }
