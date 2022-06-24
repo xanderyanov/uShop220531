@@ -22,6 +22,8 @@ public static class Data
 
     public static List<string> Categories;
 
+    public static List<string> Levels;
+
     public static IMongoCollection<Product> productsCollection;
 
     public static IMongoCollection<Blog> blogCollection;
@@ -36,14 +38,22 @@ public static class Data
         //Каталог и все такое
         productsCollection = DB.GetCollection<Product>("products");
         ExistingTovars = GetAllProducts();
-        //Categories = ExistingTovars.Select(x => x.CatLev[1]).Distinct().OrderBy(x => x).ToList();
+        Categories = ExistingTovars.Select(x => x.CatLev[2]).Distinct().OrderBy(x => x).ToList();
         //Categories = ExistingTovars.Select(x => x.BrandName = "Casio").Distinct().OrderBy(x => x).ToList();
-        Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
+        
+        //Categories = ExistingTovars.Select(x => x.BrandName).Distinct().OrderBy(x => x).ToList();
 
 
         //Блог
         blogCollection = DB.GetCollection<Blog>("blogpost");
         ExistingPosts = GetAllPosts();
+
+        Levels = ExistingTovars.Select(x => x.CatLev[2]).Distinct().OrderBy(x => x).ToList();
+        foreach (var l in Levels) { 
+            Console.WriteLine(l);
+        }
+
+
 
     }
 

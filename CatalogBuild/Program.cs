@@ -6,20 +6,20 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace MongoDBApp
+namespace CatalogBuild
+
 {
     class Program
     {
         private static IMongoCollection<BsonDocument> collection;
 
-        private static object BaseConnect(string targetCollection)
-        {
+        private static object BaseConnect(string targetCollection) { 
             string connectionString = "mongodb://master:159753@localhost/test?authSource=admin";
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase("ushopbase");
-
+            
             return collection = database.GetCollection<BsonDocument>(targetCollection);
-
+        
         }
         static void Main(string[] args)
         {

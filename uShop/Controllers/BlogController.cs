@@ -47,5 +47,23 @@ namespace uShop.Controllers
 
 
         }
+
+        [HttpPost]
+        public IActionResult DeletePost(string Id) {
+
+
+
+            BsonDocument filter = new BsonDocument() {
+                {
+                    "_id", Id
+                }
+            };
+
+            Data.blogCollection.DeleteOne(filter);
+
+
+            return RedirectToAction("Index");
+
+        }
     }
 }
