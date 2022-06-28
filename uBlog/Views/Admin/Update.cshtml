@@ -1,16 +1,27 @@
-﻿@model postId 
+﻿@model BsonDocument
 
-@using uBlog.Domain;
+@using MongoDB.Bson
+@using uBlog.Domain
+
 
 @{
     ViewData["Title"] = "Редактирование";
 
-    Post post = Data.ExistingPosts.RemoveAll(x => x.Id == postId);
+    //var postId = new ObjectId(Model);
+    var postId = Model;
+
+
+
+    //Post post = Data.ExistingPosts.Where(x => x.Id == ob);
 
     DateTime currentDate = DateTime.UtcNow;
+
+    Console.WriteLine(Model);
+
+
 }
 
-<div class="wrapper">
+@*<div class="wrapper">
     <div class="container-fluid container-xl">
         <div class="row py-2 posts__area">
             <div class="col-12">
@@ -40,5 +51,5 @@
         </div>
     </div>
 </div>
-
+*@
 
