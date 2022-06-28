@@ -1,0 +1,153 @@
+.catalog__area {
+  // display: grid;
+  // grid-template-columns: 2fr 6fr;
+  // grid-gap: 20px;
+
+  .at-max(992px, {
+    // grid-gap: 10px;
+  });
+
+.at-max(768px, {
+  // grid-template-columns: 1fr 3fr;
+});
+}
+
+.catalog__side {
+  background: #fff;
+  height: 100%;
+}
+
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+
+  .at-max(992px, {
+    grid-gap: 10px;
+  });
+
+.at-max(768px, {
+  grid-template-columns: repeat(3, 1fr);
+});
+}
+
+.catalog_wide {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+
+  .at-max(992px, {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  });
+
+.at-max(768px, {
+  grid-template-columns: repeat(3, 1fr);
+});
+}
+
+.catalog__item {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.catalog__itemImg {
+  margin-bottom: 20px;
+  padding-top: 133%;
+  position: relative;
+}
+
+.catalog__itemImgInner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.catalog__itemImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.catalog__itemTitle {
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--color1);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.catalog__item:hover .catalog__itemTitle {
+  color: #f00;
+}
+
+.catalog__itemPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog__itemPrice_old {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--color4);
+  text-decoration: line-through;
+  margin-right: 20px;
+}
+
+.catalog__itemPrice_current {
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color1);
+}
+
+.catalog__itemDiscount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: var(--color3);
+  z-index: 2;
+}
+
+.catalog__itemNew {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: var(--color2);
+  color: #fff;
+  z-index: 2;
+}
+
+.catalog__itemSale {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: var(--color2);
+  color: #fff;
+  z-index: 2;
+}

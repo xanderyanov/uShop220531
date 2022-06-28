@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - uShop</title>
+    <meta name="keywords" content="[[*seokeywords]]" />
+    <meta name="description" content="[[*seodescription]]" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="imagetoolbar" content="no" />
+    <meta name="msthemecompatible" content="no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/apple/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/apple/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/apple/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/apple/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/apple/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/apple/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/apple/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/apple/favicon-16x16.png" />
+    <link rel="manifest" href="assets/img/apple/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="assets/img/apple/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:url" content="[[*template:in=`1`:then=`[[~[[*id]]]]`:else=`[[++site_url]][[~[[*id]]]]`]]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Главная страница" />
+    <meta property="og:description" content="[[*seodescription]]" />
+    <meta property="og:image" content="[[++assets_url]]img/og-img.jpg" />
+
+    <link rel="stylesheet" href="~/css/vendors.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="layout">
+        <div class="site__header">
+            <div class="wrapper topLine__wrapper">
+                <div class="container-fluid container-xl">
+                    <div class="topLine row py-2">
+                        <div class="col-4">
+                            <div class="topLine__location"> <i class="bi bi-geo-alt-fill"></i><span class="locationName openFlyBoxBtn" data-id="flybox1">Укажите город</span></div>
+                        </div>
+                        <div class="col-8 d-flex justify-content-end">
+                            <div class="topLine__phone"> <i class="bi bi-phone-vibrate"></i><a href="tel:+79179888833">8-800-700-21-27</a></div>
+                            <div class="topLine__phone topLine__phone_location"> <i class="bi bi-phone-vibrate"></i><a href="tel:+79179888833">8-917-988-88-33 </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="container-fluid container-xl">
+                    <header class="header row py-2">
+                        <div class="col-12 col-md-3">
+                            <div class="logo1"> <a href="/"><img src="~/img/logo1.png" alt="" /></a></div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="header__slogan"> <span>Сеть магазинов в Саратове, Энгельсе и Пензе</span><span>Подарите близким свое время </span></div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="header__cont">
+                                <div class="header__btn xBtn">Заказать звонок</div>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+            </div>
+            <div class="wrapper topMenu__wrapper">
+                <div class="container-fluid container-xl">
+                    <nav class="topMenu__area row">
+                        <ul class="topMenu col">
+                            <li><a href="/">Главная</a></li>
+                            <li><a href="/Admin">Редактирование блога</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="site__center">
+            @RenderBody()
+        </div>
+        <div class="site__footer"><span>1</span></div>
+    </div>
+    <div class="overlay" data-overlay="flybox1">
+        <div class="overlay__inner">
+            <div class="flyBox">
+                <div class="flyBox__close"> <i class="bi bi-x-lg"></i></div>
+                <div class="flyBox__inner xScroll">
+                    <div class="location__town" data-town="engels">Энгельс</div>
+                    <div class="location__town" data-town="saratov">Саратов</div>
+                    <div class="location__town" data-town="penza">Пенза</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/vendors.js" asp-append-version="true"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+</body>
+</html>

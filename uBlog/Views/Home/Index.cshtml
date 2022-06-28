@@ -1,0 +1,23 @@
+﻿@model List<Post>
+
+@{
+    ViewData["Title"] = "Блог";
+}
+
+<div class="wrapper">
+    <div class="container-fluid container-xl">
+        <div class="row py-2 posts__area">
+            @foreach (var post in Model)
+            {
+                <div class="col-md-6">
+                    <div class="post">
+                        <div class="post__title">@post.Title</div>
+                        <div class="post__text">@post.Text</div>
+                        <div class="post__author">@post.PostDate / @post.Author</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
