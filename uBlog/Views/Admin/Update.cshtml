@@ -1,0 +1,44 @@
+﻿@model postId 
+
+@using uBlog.Domain;
+
+@{
+    ViewData["Title"] = "Редактирование";
+
+    Post post = Data.ExistingPosts.RemoveAll(x => x.Id == postId);
+
+    DateTime currentDate = DateTime.UtcNow;
+}
+
+<div class="wrapper">
+    <div class="container-fluid container-xl">
+        <div class="row py-2 posts__area">
+            <div class="col-12">
+                <h1>Редактировать пост: </h1>
+                <div class="addPost">
+                    <form action="/Admin/UpdatePost" method="post">
+                        <div class="mb-3">
+                            <label class="form-label" for="PostDate">Date</label>
+                            <input class="form-control" id="PostDate" name="PostDate" type="text" value="@post.PostDate.ToString("dd.MM.yyyy")">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Title">Title</label>
+                            <input class="form-control" id="Title" name="Title" type="text" value="@post.Title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Text">Text</label>
+                            <textarea class="form-control" id="Text" name="Text" type="text" value="">@post.Text</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Author">Author</label>
+                            <input class="form-control" id="Author" name="Author" type="text" value="@post.Author">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

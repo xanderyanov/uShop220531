@@ -41,5 +41,39 @@ namespace uBlog.Controllers
 
 
         }
+
+        [HttpGet]
+        public IActionResult UpdatePostPage(string Id)
+        {
+            var postId = new ObjectId(Id);
+            
+            BsonDocument filter = new BsonDocument() {
+                {
+                    "_id", postId
+                }
+            };
+
+            return View("Update", filter);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePost(string Id)
+        {
+            var postId = new ObjectId(Id);
+
+            BsonDocument filter = new BsonDocument() {
+                {
+                    "_id", postId
+                }
+            };
+
+            Data.blogCollection.DeleteOne(filter);
+
+            Data.ExistingPosts.RemoveAll(x => x.Id == postId);
+
+
+            return RedirectToAction("Index");
+
+        }
     }
 }
