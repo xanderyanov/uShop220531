@@ -1,27 +1,13 @@
-﻿@model BsonDocument
-
-@using MongoDB.Bson
-@using uBlog.Domain
-
+﻿@model Post
 
 @{
-    ViewData["Title"] = "Редактирование";
-
-    //var postId = new ObjectId(Model);
-    var postId = Model;
-
-
-
-    //Post post = Data.ExistingPosts.Where(x => x.Id == ob);
+    ViewData["Title"] = "Редактирование материала " + @Model.Title;
 
     DateTime currentDate = DateTime.UtcNow;
 
-    Console.WriteLine(Model);
-
-
 }
 
-@*<div class="wrapper">
+<div class="wrapper">
     <div class="container-fluid container-xl">
         <div class="row py-2 posts__area">
             <div class="col-12">
@@ -30,19 +16,19 @@
                     <form action="/Admin/UpdatePost" method="post">
                         <div class="mb-3">
                             <label class="form-label" for="PostDate">Date</label>
-                            <input class="form-control" id="PostDate" name="PostDate" type="text" value="@post.PostDate.ToString("dd.MM.yyyy")">
+                            <input class="form-control" id="PostDate" name="PostDate" type="text" value="@Model.PostDate.ToString("dd.MM.yyyy")">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Title">Title</label>
-                            <input class="form-control" id="Title" name="Title" type="text" value="@post.Title">
+                            <input class="form-control" id="Title" name="Title" type="text" value="@Model.Title">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Text">Text</label>
-                            <textarea class="form-control" id="Text" name="Text" type="text" value="">@post.Text</textarea>
+                            <textarea class="form-control" id="Text" name="Text" type="text" value="">@Model.Text</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Author">Author</label>
-                            <input class="form-control" id="Author" name="Author" type="text" value="@post.Author">
+                            <input class="form-control" id="Author" name="Author" type="text" value="@Model.Author">
                         </div>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
@@ -51,5 +37,5 @@
         </div>
     </div>
 </div>
-*@
+
 
