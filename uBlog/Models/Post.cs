@@ -28,7 +28,7 @@ namespace uBlog.Models
         public string Author { get; set; }
         public Flag Flag { get; set; }
 
-        //public List<Tag> Tags { get; set; }
+        public List<Tag> Tags { get; set; }
     }
 
     public class Flag
