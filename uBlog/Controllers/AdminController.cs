@@ -32,8 +32,11 @@ namespace uBlog.Controllers
             });
 
 
-            if (!Data.ExistingPosts.Any(x => x.Id == post.Id))
+            if (!Data.ExistingPosts.Any(x => x.Id == post.Id)) {
+                
                 Data.ExistingPosts.Add(post);
+
+            }
 
             return RedirectToAction("Index");
 
