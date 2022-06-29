@@ -14,6 +14,12 @@
                 <h1>Редактировать пост: </h1>
                 <div class="addPost">
                     <form action="/Admin/UpdatePost" method="post">
+                        @*<input id="Id" name="Id" type="hidden" value="@Model.Id.ToString()">*@
+                        @Html.HiddenFor(x => x.IdAsString)
+                        @*<div class="mb-3">
+                            <label class="form-label" for="PostDate">Id</label>
+                            <input class="form-control" id="_id" name="_id" type="text" value="@Model.Id">
+                        </div>*@
                         <div class="mb-3">
                             <label class="form-label" for="PostDate">Date</label>
                             <input class="form-control" id="PostDate" name="PostDate" type="text" value="@Model.PostDate.ToString("dd.MM.yyyy")">

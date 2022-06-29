@@ -56,9 +56,8 @@ namespace uBlog.Controllers
             {
                 return NotFound();
             }
-
+            
             Post post = Data.ExistingPosts.Find(x => x.Id == Id);
-
             return View("Update", post);
         }
 
@@ -66,23 +65,23 @@ namespace uBlog.Controllers
         [HttpPost]
         public IActionResult UpdatePost(Post post)
         {
-            if (post.Id == default)
-            {
-                var postId = post.Id;
-            }
+
             BsonDocument filter = new BsonDocument() {
                 {
                     "_id", post.Id
                 }
             };
 
-            // Data.blogCollection.UpdateOne(filter, "то, на что заменяю - как это получить - не могу понять...");
-            // должен id сохраниться же
-            // пока получалось только создание нового документа 
+            Data.blogCollection.ReplaceOne(filter, post, new ReplaceOptions()
+            {
+                IsUpsert = true
+            });
 
-            //как то надо обновлять Data.ExistingPosts - чтобы в памяти актуально было все - тоже не пойму...;
+            int index = Data.ExistingPosts.FindIndex(x => x.Id == post.Id);
+            if (index == -1) Data.ExistingPosts.Add(post); else Data.ExistingPosts[index] = post;
 
-            return RedirectToAction("Index"); //возврат на страницу админки редактирования - где все посты
+
+            return RedirectToAction("Index");
         }
 
 
