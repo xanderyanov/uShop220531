@@ -12,6 +12,8 @@ namespace uBlog.Domain
 
         public static IMongoCollection<Post> blogCollection;
 
+        public static IMongoCollection<Flag> Flags;
+
         public static void InitData(IConfiguration Configuration)
         {
             var dbConfigSection = Configuration.GetSection("DBConfig");
@@ -20,6 +22,7 @@ namespace uBlog.Domain
             DB = mongoClient.GetDatabase(dbConfig.DBName);
 
             blogCollection = DB.GetCollection<Post>("blogpost");
+            Flags = DB.GetCollection<Flag>("posttags");
 
             ExistingPosts = GetAllPosts();
         }

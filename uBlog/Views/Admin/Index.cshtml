@@ -1,9 +1,12 @@
-﻿@model List<Post>
+﻿@using uBlog.Domain
+@model List<Post>
 
 @{
     ViewData["Title"] = "Блог";
 
     DateTime currentDate = DateTime.UtcNow;
+
+    //IEnumerable<Flag> Flags = Data.Flags;
 }
 
 <div class="wrapper">
@@ -16,6 +19,16 @@
                         <div class="mb-3">
                             <label class="form-label" for="PostDate">Date</label>
                             <input class="form-control" id="PostDate" name="PostDate" type="text" value="@currentDate.ToString()">   @*"dd.MM.yyyy"*@
+                        </div>
+                        <div class="mb-3">
+                        @*<select class="form-select" id="Flag" name="Flag" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                                @foreach(var flag in Flags)
+                                {
+                                    <option value="@flag">@flag</option>
+                                }
+
+                        </select>*@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Title">Title</label>

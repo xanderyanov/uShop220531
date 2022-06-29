@@ -1,4 +1,4 @@
-﻿@model List<Post>
+﻿@model IEnumerable<Post>
 
 @{
     ViewData["Title"] = "Блог";
@@ -7,14 +7,22 @@
 <div class="wrapper">
     <div class="container-fluid container-xl">
         <div class="row py-2 posts__area">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3"><a asp-action="Index" asp-route-sortOrder="@ViewBag.TitleSort">По заголовку</a></div>
+                    <div class="col-3"><a asp-action="Index" asp-route-sortOrder="@ViewBag.DateSort">По дате</a></div>
+                </div>
+            </div>
+            
             @foreach (var post in Model)
             {
                 <div class="col-md-6">
                     <div class="post">
+                        <div class="post__title">@post.Flag</div>
                         <div class="post__title">@post.Title</div>
                         <div class="post__text">@post.Text</div>
                         <div class="post__author">@post.PostDate / @post.Author</div>
-                        @if (@post.Tags != null)
+                        @*@if (@post.Tags != null)
                         {
                             <div class="post__tags">
                                 foreach (var tag in post.Tags)
@@ -22,7 +30,7 @@
                                     <div class="post__tags">tag</div>
                                 }
                             </div>
-                        }
+                        }*@
                     </div>
                 </div>
             }

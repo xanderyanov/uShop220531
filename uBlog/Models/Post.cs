@@ -26,12 +26,27 @@ namespace uBlog.Models
         public string Title { get; set; }
         public string Text { get; set; }
         public string Author { get; set; }
+        public Flag Flag { get; set; }
 
-        public List<Tag> Tags { get; set; }
+        //public List<Tag> Tags { get; set; }
+    }
+
+    public class Flag
+    {
+        public ObjectId Id { get; set; }
+        public string FlagName { get; set; }
     }
 
     public class Tag
     { 
         public string TagName { get; set; }
+    }
+
+    public enum SortState
+    {
+        TitleAsc,    // по названию по возрастанию
+        TitleDesc,   // по названию по убыванию
+        DateAsc, // по дате по возрастанию
+        DateDesc,    // по дате по убыванию
     }
 }
