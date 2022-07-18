@@ -1,20 +1,32 @@
-﻿@model IEnumerable<Post>
+﻿@*@model IEnumerable<Post>*@
+@model IndexViewModel
 
 @{
     ViewData["Title"] = "Блог";
 }
+
+<style>
+    .glyphicon { display: inline-block; padding:0 5px;}
+    .glyphicon-chevron-right:after { content: "\00BB"; }
+    .glyphicon-chevron-left:before { content: "\00AB"; }
+</style>
 
 <div class="wrapper">
     <div class="container-fluid container-xl">
         <div class="row py-2 posts__area">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-3"><a class="btn btn-info" asp-action="Index" asp-route-sortOrder="@ViewBag.TitleSort">По заголовку</a></div>
-                    <div class="col-3"><a class="btn btn-info" asp-action="Index" asp-route-sortOrder="@ViewBag.DateSort">По дате</a></div>
+                    @*<div class="col-3"><a class="btn btn-info" asp-action="Index" asp-route-sortOrder="@ViewBag.TitleSort" >По заголовку</a></div>
+                    <div class="col-3"><a class="btn btn-info" asp-action="Index" asp-route-sortOrder="@ViewBag.DateSort">По дате</a></div>*@
+                    
+                    
+                    
+                    <div class="col-3"><a class="btn btn-info" href="@Html.Raw(Model.PageViewModel.UrlForOtherSortOrder(Model.PageViewModel.Sort == SortState.TitleAsc ? SortState.TitleDesc : SortState.TitleAsc))" >По заголовку</a></div>
+                    <div class="col-3"><a class="btn btn-info" href="@Html.Raw(Model.PageViewModel.UrlForOtherSortOrder(Model.PageViewModel.Sort == SortState.DateAsc ? SortState.DateDesc : SortState.DateAsc))">По дате</a></div>
                 </div>
             </div>
             
-            @foreach (var post in Model)
+            @foreach (var post in Model.Posts)
             {
                 <div class="col-md-6">
                     <div class="post">
@@ -34,6 +46,22 @@
                     </div>
                 </div>
             }
+
+            <p>
+                @if (Model.PageViewModel.HasPreviousPage)
+                {
+                    <a href="@Html.Raw(Model.PageViewModel.UrlForOtherPage(-1))" class="glyphicon glyphicon-chevron-left">
+                        Назад
+                    </a>
+                }
+                @if (Model.PageViewModel.HasNextPage)
+                {
+                    <a href="@Html.Raw(Model.PageViewModel.UrlForOtherPage(1))" class="glyphicon glyphicon-chevron-right">
+                        Вперед
+                    </a>
+                }
+            </p>
+
         </div>
     </div>
 </div>
