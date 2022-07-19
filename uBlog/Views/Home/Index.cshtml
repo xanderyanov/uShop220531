@@ -1,5 +1,5 @@
 ﻿@*@model IEnumerable<Post>*@
-@model IndexViewModel
+@model ComplexModel
 
 @{
     ViewData["Title"] = "Блог";
@@ -16,13 +16,8 @@
         <div class="row py-2 posts__area">
             <div class="col-12">
                 <div class="row">
-                    @*<div class="col-3"><a class="btn btn-info" asp-action="Index" asp-route-sortOrder="@ViewBag.TitleSort" >По заголовку</a></div>
-                    <div class="col-3"><a class="btn btn-info" asp-action="Index" asp-route-sortOrder="@ViewBag.DateSort">По дате</a></div>*@
-                    
-                    
-                    
-                    <div class="col-3"><a class="btn btn-info" href="@Html.Raw(Model.PageViewModel.UrlForOtherSortOrder(Model.PageViewModel.Sort == SortState.TitleAsc ? SortState.TitleDesc : SortState.TitleAsc))" >По заголовку</a></div>
-                    <div class="col-3"><a class="btn btn-info" href="@Html.Raw(Model.PageViewModel.UrlForOtherSortOrder(Model.PageViewModel.Sort == SortState.DateAsc ? SortState.DateDesc : SortState.DateAsc))">По дате</a></div>
+                    <div class="col-3"><a class="btn btn-info" href="@Html.Raw(Model.UrlForOtherSortOrder(Model.SortViewModel.Current == SortState.TitleDesc ? SortState.TitleAsc : SortState.TitleDesc))" >По заголовку</a></div>
+                    <div class="col-3"><a class="btn btn-info" href="@Html.Raw(Model.UrlForOtherSortOrder(Model.SortViewModel.Current == SortState.DateDesc ? SortState.DateAsc : SortState.DateDesc))">По дате</a></div>
                 </div>
             </div>
             
@@ -34,15 +29,7 @@
                         <div class="post__title">@post.Title</div>
                         <div class="post__text">@post.Text</div>
                         <div class="post__author">@post.PostDate / @post.Author</div>
-                        @*@if (@post.Tags != null)
-                        {
-                            <div class="post__tags">
-                                foreach (var tag in post.Tags)
-                                {
-                                    <div class="post__tags">tag</div>
-                                }
-                            </div>
-                        }*@
+
                     </div>
                 </div>
             }
@@ -50,13 +37,13 @@
             <p>
                 @if (Model.PageViewModel.HasPreviousPage)
                 {
-                    <a href="@Html.Raw(Model.PageViewModel.UrlForOtherPage(-1))" class="glyphicon glyphicon-chevron-left">
+                    <a href="@Html.Raw(Model.UrlForOtherPage(-1))" class="glyphicon glyphicon-chevron-left">
                         Назад
                     </a>
                 }
                 @if (Model.PageViewModel.HasNextPage)
                 {
-                    <a href="@Html.Raw(Model.PageViewModel.UrlForOtherPage(1))" class="glyphicon glyphicon-chevron-right">
+                    <a href="@Html.Raw(Model.UrlForOtherPage(1))" class="glyphicon glyphicon-chevron-right">
                         Вперед
                     </a>
                 }

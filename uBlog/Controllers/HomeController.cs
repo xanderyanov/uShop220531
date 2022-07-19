@@ -7,12 +7,9 @@ namespace uBlog.Controllers
 {
     public class HomeController : Controller
     {
+
         public IActionResult Index(SortState sortOrder = SortState.DateDesc, int page = 1)
         {
-            
-
-            ViewData["TitleSort"] = sortOrder == SortState.TitleAsc ? SortState.TitleDesc : SortState.TitleAsc;
-            ViewData["DateSort"] = sortOrder == SortState.DateAsc ? SortState.DateDesc : SortState.DateAsc;
 
             var Model = Data.ExistingPosts;
 
@@ -24,14 +21,18 @@ namespace uBlog.Controllers
                 _ => Model.OrderByDescending(s => s.PostDate).ToList(),
             };
 
-            int pageSize = 3;
+            int pageSize = 4;
 
             var count = Model.Count();
             var items = Model.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             pageViewModel.Sort = sortOrder;
-            IndexViewModel viewModel = new IndexViewModel(items, pageViewModel);
+            ComplexModel viewModel = new ComplexModel(
+                items,
+                new PageViewModel(count, page, pageSize),
+                new SortViewModel(sortOrder)
+            );
 
             return View(viewModel);
         }
