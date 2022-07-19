@@ -1,9 +1,12 @@
-﻿@model Post
+﻿@using uBlog.Domain
+@model Post
 
 @{
     ViewData["Title"] = "Редактирование материала " + @Model.Title;
 
     DateTime currentDate = DateTime.UtcNow;
+
+    var Topics = Data.RamTopics;
 
 }
 
@@ -35,6 +38,19 @@
                         <div class="mb-3">
                             <label class="form-label" for="Author">Author</label>
                             <input class="form-control" id="Author" name="Author" type="text" value="@Model.Author">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="PostTopicId">Topic</label>
+
+                            <select class="form-select" id="PostTopicId" name="PostTopicId">
+                                @foreach(var option in Topics)
+                                {
+                                    <option value="@option.Id">@option.Title</option>
+                                }
+                                
+                            </select>
+
                         </div>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>

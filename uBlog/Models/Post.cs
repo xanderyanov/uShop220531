@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using uBlog.Domain;
 
 namespace uBlog.Models
 {
@@ -26,9 +27,20 @@ namespace uBlog.Models
         public string Title { get; set; }
         public string Text { get; set; }
         public string Author { get; set; }
+        public ObjectId PostTopicId { get; set; }
+
+        public PostTopic Topic => Data.RamTopics.FirstOrDefault(x => x.Id == PostTopicId);
+
+
         public Flag Flag { get; set; }
 
         public List<Tag> Tags { get; set; }
+    }
+
+    public class PostTopic
+    {
+        public ObjectId Id { get; set; }
+        public string Title { get; set; }
     }
 
     public class Flag
@@ -38,9 +50,10 @@ namespace uBlog.Models
     }
 
     public class Tag
-    { 
+    {
         public string TagName { get; set; }
     }
+
 
     public enum SortState
     {

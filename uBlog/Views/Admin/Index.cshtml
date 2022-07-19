@@ -6,7 +6,8 @@
 
     DateTime currentDate = DateTime.UtcNow;
 
-    //IEnumerable<Flag> Flags = Data.Flags;
+    var Topics = Data.RamTopics;
+
 }
 
 <div class="wrapper">
@@ -21,14 +22,7 @@
                             <input class="form-control" id="PostDate" name="PostDate" type="text" value="@currentDate.ToString()">   @*"dd.MM.yyyy"*@
                         </div>
                         <div class="mb-3">
-                        @*<select class="form-select" id="Flag" name="Flag" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                                @foreach(var flag in Flags)
-                                {
-                                    <option value="@flag">@flag</option>
-                                }
 
-                        </select>*@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="Title">Title</label>
@@ -42,6 +36,20 @@
                             <label class="form-label" for="Author">Author</label>
                             <input class="form-control" id="Author" name="Author" type="text" value="">
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="Author">Topic</label>
+
+                            <select>
+                                @foreach(var option in Topics)
+                                {
+                                    <option>@option.Title</option>
+                                }
+                                
+                            </select>
+
+                        </div>
+
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
                 </div>
