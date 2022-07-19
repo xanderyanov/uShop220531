@@ -38,17 +38,18 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="Author">Topic</label>
-
-                            <select>
+                            <label class="form-label" for="PostTopicIdAsString">Topic</label>
+                            <select class="form-select" id="PostTopicIdAsString" name="PostTopicIdAsString">
+                                <option value="" selected>Укажите категорию</option>
                                 @foreach(var option in Topics)
                                 {
-                                    <option>@option.Title</option>
+                                    <option value="@option.Id">@option.Title</option>
                                 }
-                                
                             </select>
 
                         </div>
+
+
 
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
@@ -66,6 +67,7 @@
                     <tr>
                         <th>Дата</th>
                         <th>Заголовок</th>
+                        <th>Тег</th>
                         <th>Автор</th>
                         <th></th>
                     </tr>
@@ -78,6 +80,7 @@
                     <tr>
                         <td>@post.PostDate</td>
                         <td>@post.Title</td>
+                        <td>@post.Topic?.Title</td>
                         <td>@post.Author</td>
                         <td>
                             <a class="btn btn-default btn-xs" href="/Admin/UpdatePost/@post.Id.ToString()">Редактировать</a>

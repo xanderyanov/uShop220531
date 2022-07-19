@@ -1,5 +1,6 @@
 ﻿@using uBlog.Domain
 @model Post
+@*@removeTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
 
 @{
     ViewData["Title"] = "Редактирование материала " + @Model.Title;
@@ -41,16 +42,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="PostTopicId">Topic</label>
-
-                            <select class="form-select" id="PostTopicId" name="PostTopicId">
+                            <label class="form-label" for="PostTopicIdAsString">Topic</label>
+                            <select class="form-select" id="PostTopicIdAsString" name="PostTopicIdAsString">
+                                @*<option value="" selected="@if(Model.PostTopicId.ToString() == "000000000000000000000000"){<text>selected</text>}">Укажите категорию</option>*@
                                 @foreach(var option in Topics)
                                 {
-                                    <option value="@option.Id">@option.Title</option>
+                                    <!option @if(Model.PostTopicId == @option.Id){<text>selected</text>} value="@option.Id">@option.Title</!option>
+ 
                                 }
-                                
                             </select>
-
                         </div>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>

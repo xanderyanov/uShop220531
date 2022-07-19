@@ -28,6 +28,9 @@ namespace uBlog.Models
         public string Text { get; set; }
         public string Author { get; set; }
         public ObjectId PostTopicId { get; set; }
+        
+        [BsonIgnore]
+        public string PostTopicIdAsString { get => PostTopicId.ToString(); set => PostTopicId = new ObjectId(value); }
 
         public PostTopic Topic => Data.RamTopics.FirstOrDefault(x => x.Id == PostTopicId);
 
