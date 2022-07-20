@@ -43,6 +43,9 @@ namespace uBlog.Models
     public class PostTopic
     {
         public ObjectId Id { get; set; }
+        
+        [BsonIgnore]
+        public string IdAsString { get => Id.ToString(); set => Id = new ObjectId(value); }
         public string Title { get; set; }
     }
 

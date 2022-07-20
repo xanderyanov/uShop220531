@@ -4,17 +4,22 @@
     {
 
         public IEnumerable<Post> Posts { get; }
+        //public FilterViewModel FilteredViewModel { get; set; }
         public PageViewModel PageViewModel { get; set; }
         public SortViewModel SortViewModel { get; set; }
+
 
         public ComplexModel(IEnumerable<Post> posts, PageViewModel pageViewModel, SortViewModel sortViewModel)
         {
             Posts = posts;
 
+            //FilteredViewModel = filteredViewModel;
+
             PageViewModel = pageViewModel;
 
             SortViewModel = sortViewModel;
         }
+
 
         public string UrlForOtherPage(int delta)
         {

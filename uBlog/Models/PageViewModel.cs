@@ -15,15 +15,7 @@
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
         }
 
-        //public string UrlForOtherPage(int delta)
-        //{
-        //    return "?sortOrder=" + Sort + "&page=" + (PageNumber + delta);
-        //}
 
-        //public string UrlForOtherSortOrder(SortState newSortOrder)
-        //{
-        //    return "?sortOrder=" + newSortOrder + "&page=" + (PageNumber);
-        //}
     }
 }
 

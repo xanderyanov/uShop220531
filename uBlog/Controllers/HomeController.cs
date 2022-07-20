@@ -8,10 +8,20 @@ namespace uBlog.Controllers
     public class HomeController : Controller
     {
 
-        public IActionResult Index(SortState sortOrder = SortState.DateDesc, int page = 1)
+        public IActionResult Index(string? topic, SortState sortOrder = SortState.DateDesc, int page = 1)
         {
 
             var Model = Data.ExistingPosts;
+
+            
+
+
+
+            //фильтрация
+
+
+
+
 
             Model = sortOrder switch
             {
@@ -28,8 +38,10 @@ namespace uBlog.Controllers
 
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             pageViewModel.Sort = sortOrder;
+            
             ComplexModel viewModel = new ComplexModel(
                 items,
+                //new FilteredViewModel(Posts, Topics),
                 new PageViewModel(count, page, pageSize),
                 new SortViewModel(sortOrder)
             );
